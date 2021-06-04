@@ -1,0 +1,7 @@
+.vs
+Library
+Temp
+*.apk
+Assembly-CSharp.Player.csproj Assembly-CSharp.csproj Unity.CollabProxy.Editor.csproj Unity.Rider.Editor.csproj Unity.TextMeshPro.Editor.csproj Unity.TextMeshPro.csproj Unity.Timeline.Editor.csproj Unity.Timeline.csproj Unity.VSCode.Editor.csproj UnityEditor.TestRunner.csproj UnityEditor.UI.csproj UnityEngine.TestRunner.csproj UnityEngine.UI.csproj
+/build
+/.vscode
