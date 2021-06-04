@@ -7,6 +7,7 @@ public class Round : MonoBehaviour
 {
 
     public GameObject[] chars;
+    bool waitForNextFrame = false;
 
 
 
@@ -28,12 +29,21 @@ public class Round : MonoBehaviour
 
     }
 
+    void LateUpdate()
+    {
+        waitForNextFrame = false;
+    }
+
     public void finishTurn()
     {
+        if (waitForNextFrame)
+            return;
+
         print("Turno de : " + chars[0].name + " Finalizado. Indo para turno de: " + chars[1].name);
         chars = firstPlayerToLast(chars);
         //actual = chars[0];
 
+        waitForNextFrame = true;
     }
 
     GameObject[] firstPlayerToLast(GameObject[] gos)
