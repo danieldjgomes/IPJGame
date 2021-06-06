@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public int attack;
     public int defense;
 
+
+    public Outline outline;
     public Tile tile;
     public string playerStage;
     RaycastHit hit;
@@ -22,14 +24,18 @@ public class Player : MonoBehaviour
     void Start()
     {
         playerStage = "idle";
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        setOutlineTurn();
         //if (round.getActualPlayerTransform() == this.transform)
-        if (round.getActualPlayerTransform() == this.gameObject.transform)
+        if (round.getActualPlayer().transform == this.gameObject.transform)
             {
+
+            
             if (Input.GetMouseButtonDown(0) && playerStage == "idle")
 
             {
@@ -97,14 +103,33 @@ public class Player : MonoBehaviour
 
         }
 
-        
+        void setOutlineTurn()
+        {
+            if (round.getActualPlayer().transform == this.gameObject.transform)
+            {
+                outline.OutlineMode = Outline.Mode.OutlineAndSilhouette;
+                outline.OutlineWidth = 5f;
+                
+            }
+            else
+            {
+                outline.OutlineMode = Outline.Mode.OutlineAndSilhouette;
+                outline.OutlineWidth = 0;
 
-        
+            }
+                
+        }
 
 
-            
-            
-        
+
+
+
+
+
+
+
+
+
 
 
     }

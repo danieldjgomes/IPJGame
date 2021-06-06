@@ -58,11 +58,10 @@ public class Round : MonoBehaviour
         return gos;
     }
 
-    public Transform getActualPlayerTransform()
+    public GameObject getActualPlayer()
     {
-        return this.chars[0].transform;
+        return chars[0];
     }
-
 
 }
 
