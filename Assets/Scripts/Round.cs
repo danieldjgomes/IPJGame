@@ -8,6 +8,7 @@ public class Round : MonoBehaviour
 
     public GameObject[] chars;
     bool waitForNextFrame = false;
+   
 
 
 
@@ -19,7 +20,6 @@ public class Round : MonoBehaviour
         {
             //print(charActual.transform.name);
         }
-
 
     }
 
@@ -41,7 +41,7 @@ public class Round : MonoBehaviour
 
         print("Turno de : " + chars[0].name + " Finalizado. Indo para turno de: " + chars[1].name);
         chars = firstPlayerToLast(chars);
-        //actual = chars[0];
+
 
         waitForNextFrame = true;
     }

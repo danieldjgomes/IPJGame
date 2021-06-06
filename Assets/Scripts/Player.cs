@@ -7,11 +7,16 @@ public class Player : MonoBehaviour
 
     public int stamina;
     public int moviment;
+    public int health;
+    public int attack;
+    public int defense;
+
     public Tile tile;
     public string playerStage;
     RaycastHit hit;
     Ray ray;
     public Round round;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -85,6 +90,7 @@ public class Player : MonoBehaviour
             //{
             if (Input.GetKeyDown(KeyCode.Tab))
                 {
+                    playerStage = "idle";
                     round.finishTurn();
                 }
             //}
