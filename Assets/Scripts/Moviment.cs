@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameUtils;
 
 public class Moviment : MonoBehaviour
 {
@@ -105,18 +106,21 @@ public class Moviment : MonoBehaviour
         {
             foreach (Tile tc in tileControllers)
             {
-                if (
+               
 
-                    (int)Mathf.RoundToInt(
-                        Vector3.Distance(
-                        new Vector3(
-                            player.transform.position.x, 1,
-                            player.transform.position.z),
-                        new Vector3(
-                            tc.transform.position.x, 1,
-                            tc.transform.position.z))) == 1 
-                            && (player.transform.position.x == tc.transform.position.x || (player.transform.position.z == tc.transform.position.z))
-                            )
+                if (
+                    GameUtils.Distance.IsEnoughDistance(player.gameObject, tc.gameObject, 1)
+                    //(int)Mathf.RoundToInt(
+                    //    Vector3.Distance(
+                    //    new Vector3(
+                    //        player.transform.position.x, 1,
+                    //        player.transform.position.z),
+                    //    new Vector3(
+                    //        tc.transform.position.x, 1,
+                    //        tc.transform.position.z))) <= 1 
+                    //        && (player.transform.position.x == tc.transform.position.x || (player.transform.position.z == tc.transform.position.z))
+                    //        )
+                    )
                 {
                    
                     if (path is null)

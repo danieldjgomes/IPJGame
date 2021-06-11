@@ -7,10 +7,42 @@ public class Player : MonoBehaviour
     public int stamina;
     public int speed;
     public int health;
-    public int attack;
+    public int phisicalDamage;
     public int defense;
+   
 
-    
+    public enum Range
+    {
+        Melee,
+        Ranged
+    }
+
+    public Range Melee
+    {
+        get { return Melee; }
+        set
+        {
+            AttackMode = value;
+        }
+    }
+
+    public Range Ranged
+    {
+        get { return Ranged; }
+        set
+        {
+            AttackMode = value;
+        }
+    }
+
+
+
+
+
+    [SerializeField]
+    private Range AttackMode;
+   
+
     public Tile tile;
     public string playerStage;
     RaycastHit hit;
@@ -19,6 +51,7 @@ public class Player : MonoBehaviour
     public Moviment moviment;
     public UIController ui;
     public Outline outline;
+    public Attack attack;
     
 
     // Start is called before the first frame update
@@ -31,10 +64,28 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         ui.SetOutlineTurn(this);
+        ui.SetMovimentPlayer(this);
+
+
 
         if (round.getActualPlayer() == this.gameObject)
             {
+
+
+            if (Input.GetKeyDown(KeyCode.CapsLock))
+            {
+                this.playerStage = "preparingAttack";
+                attack.DoAttack(this);
+
+               
+            }
+
+            if (this.playerStage == "preparingAttack" && Input.GetKeyDown(KeyCode.Escape))
+            {
+                playerStage = "idle";
+            }
             
 
 
@@ -86,6 +137,8 @@ public class Player : MonoBehaviour
                     playerStage = "idle";
                 }
             }
+
+
 
             if (Input.GetKeyDown(KeyCode.Tab))
                 {
