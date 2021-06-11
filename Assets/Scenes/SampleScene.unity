@@ -121,6 +121,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &621532358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 621532360}
+  - component: {fileID: 621532359}
+  m_Layer: 0
+  m_Name: MovimentController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &621532359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621532358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f41f2841f8c42c468ba03051d3a0258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tile: {fileID: 4666510455317779612, guid: 1b9cd5fa0f163ae45b45df62a3f7cb86, type: 3}
+--- !u!4 &621532360
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621532358}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.2415605, y: 0.88146603, z: 4.303008}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &653016650
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,6 +178,7 @@ GameObject:
   - component: {fileID: 653016652}
   - component: {fileID: 653016651}
   - component: {fileID: 653016655}
+  - component: {fileID: 653016656}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -235,6 +280,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 656232851}
   round: {fileID: 725829460}
+--- !u!114 &653016656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653016650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &656232849
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,14 +484,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stamina: 10
-  moviment: 5
+  speed: 7
   health: 800
   attack: 100
   defense: 20
-  outline: {fileID: 699930247}
   tile: {fileID: 4666510455317779612, guid: 1b9cd5fa0f163ae45b45df62a3f7cb86, type: 3}
   playerStage: 
   round: {fileID: 725829460}
+  moviment: {fileID: 621532359}
+  ui: {fileID: 653016655}
+  outline: {fileID: 699930247}
 --- !u!114 &699930247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,9 +506,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 2
+  outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 4.98
+  outlineWidth: 0
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -550,7 +615,7 @@ GameObject:
   - component: {fileID: 725829461}
   - component: {fileID: 725829460}
   m_Layer: 0
-  m_Name: RoundManager
+  m_Name: RoundController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -577,11 +642,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725829459}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.25101, y: 1.4334483, z: -3.4550304}
+  m_LocalPosition: {x: 4.74899, y: 1.4334483, z: 6.5449696}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1859442192}
-  m_RootOrder: 2
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
@@ -660,8 +725,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.30070576, y: 0, z: 0, w: 0.953717}
-  m_LocalPosition: {x: 0, y: 8, z: -3}
+  m_LocalRotation: {x: 0.19613343, y: 0.07493239, z: -0.015033586, w: 0.9775944}
+  m_LocalPosition: {x: 6.519804, y: 10.556652, z: -13.253826}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -716,14 +781,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stamina: 10
-  moviment: 5
+  speed: 0
   health: 0
   attack: 0
   defense: 0
-  outline: {fileID: 1353717649}
   tile: {fileID: 4666510455317779612, guid: 1b9cd5fa0f163ae45b45df62a3f7cb86, type: 3}
   playerStage: 
   round: {fileID: 725829460}
+  moviment: {fileID: 621532359}
+  ui: {fileID: 653016655}
+  outline: {fileID: 1353717649}
 --- !u!65 &1353717645
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -796,7 +863,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1859442192}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1353717649
 MonoBehaviour:
@@ -810,9 +877,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 2
+  outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
+  outlineWidth: 0
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -893,7 +960,6 @@ Transform:
   m_Children:
   - {fileID: 1827690545}
   - {fileID: 699930245}
-  - {fileID: 725829461}
   - {fileID: 1353717648}
   - {fileID: 1993710942}
   m_Father: {fileID: 0}
@@ -933,14 +999,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stamina: 10
-  moviment: 5
+  speed: 0
   health: 0
   attack: 0
   defense: 0
-  outline: {fileID: 1993710943}
   tile: {fileID: 4666510455317779612, guid: 1b9cd5fa0f163ae45b45df62a3f7cb86, type: 3}
   playerStage: 
   round: {fileID: 725829460}
+  moviment: {fileID: 621532359}
+  ui: {fileID: 653016655}
+  outline: {fileID: 1993710943}
 --- !u!65 &1993710939
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1013,7 +1081,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1859442192}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1993710943
 MonoBehaviour:
@@ -1027,9 +1095,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 2
+  outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
+  outlineWidth: 0
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

@@ -10,11 +10,12 @@ public class Tile : MonoBehaviour
     public Material floresAmaz;
     public Material caatinga;
     public Material pantanal;
-    public int weight;
+    public float weight;
     public TextMesh text;
     public string biome;
     public bool inUse;
     System.Random rnd = new System.Random();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -88,24 +89,6 @@ public class Tile : MonoBehaviour
         
     }
 
-   
-    //public void setInUse()
-    //{
-    //    GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-
-
-    //    foreach (GameObject player in players)
-    //    {
-    //        if (this.transform.position.x == player.transform.position.x && (this.transform.position.z == player.transform.position.z))
-    //            {
-    //            this.inUse = true;
-               
-    //        }
-
-           
-
-    //    }   
-    //}
 
     public void setMaterialSelected(Component go)
     {
