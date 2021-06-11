@@ -31,7 +31,6 @@ public class Moviment : MonoBehaviour
         }
     }
 
-
     public void RemoveMovableTile()
     {
         GameObject[] gos = GameObject.FindGameObjectsWithTag("movableTile");
@@ -47,13 +46,13 @@ public class Moviment : MonoBehaviour
         }
     }
 
-    public void movePlayer(Transform hit, Player player)
+    public void MovePlayer(Transform hit, Player player)
     {
-        Tile[] tileControllers = calculatePath(hit);
-        StartCoroutine(runPath(hit, tileControllers, player));
+        Tile[] tileControllers = CalculateWeight(hit);
+        StartCoroutine(RunPath(hit, tileControllers, player));
     }
 
-    public Tile[] calculatePath(Transform hit)
+    public Tile[] CalculateWeight(Transform hit)
     {
         Tile[] tileControllers = FindObjectsOfType<Tile>();
         foreach (Tile tc in tileControllers)
@@ -79,14 +78,17 @@ public class Moviment : MonoBehaviour
                      tc.transform.position.z)));
             }
 
-          
+            UpdateInUseTile(tc);
+
+
 
         }
         return tileControllers;
 
     }
 
-    IEnumerator runPath(Transform hit, Tile[] tileControllers, Player player)
+
+    IEnumerator RunPath(Transform hit, Tile[] tileControllers, Player player)
     {
         Tile path = null;
 
@@ -103,7 +105,6 @@ public class Moviment : MonoBehaviour
         {
             foreach (Tile tc in tileControllers)
             {
-
                 if (
 
                     (int)Mathf.RoundToInt(
@@ -113,35 +114,44 @@ public class Moviment : MonoBehaviour
                             player.transform.position.z),
                         new Vector3(
                             tc.transform.position.x, 1,
-                            tc.transform.position.z))) <= 1 && (player.transform.position.x == tc.transform.position.x || (player.transform.position.z == tc.transform.position.z)) && tc.inUse == false)
+                            tc.transform.position.z))) == 1 
+                            && (player.transform.position.x == tc.transform.position.x || (player.transform.position.z == tc.transform.position.z))
+                            )
                 {
-
-
+                   
                     if (path is null)
                     {
                         path = tc;
                     }
 
-
                     if (path.weight > tc.weight)
                     {
                         path = tc;
-
-
                     }
 
-                    if (path.weight == tc.weight)
+                    else
                     {
-
-                        if (tc.transform.position.x == hit.transform.position.x || (tc.transform.position.z == hit.transform.position.z))
+                        if (path.weight == tc.weight)
                         {
-                            path = tc;
+
+                            if (tc.transform.position.x == hit.transform.position.x || (tc.transform.position.z == hit.transform.position.z))
+                            {
+                                path = tc;
+                            }
+
+                            //if (tc.transform.position.x == player.transform.position.x || tc.transform.position.z == player.transform.position.z)
+                            //{
+                            //    print(path.weight);
+                            //    path = tc;
+
+                            //}
+
+
+                            //TODO: Arrumar erro na movimentação
+
                         }
-
-
-                        //TODO: Arrumar erro na movimentação
-
                     }
+                    
 
                     if (tc.weight == 0)
                     {
@@ -154,23 +164,39 @@ public class Moviment : MonoBehaviour
 
             }
             if (player.stamina > 0)
-            {
+            {    
+
                 player.transform.position = Vector3.MoveTowards(new Vector3(path.transform.position.x, 1, path.transform.position.z), new Vector3(hit.transform.position.x, 1, hit.transform.position.z), 0.000001f * Time.deltaTime);
                 player.stamina -= 1;
+                
 
             }
-            //print(path.transform.position.x + ":" + path.transform.position.z);
+            
 
             if (path.transform.position.x == hit.transform.position.x && path.transform.position.z == hit.transform.position.z)
             {
                 break;
             }
 
+            path = null;
             yield return null;
         }
 
 
         yield return new WaitForSeconds(1f);
 
+    }
+
+    void UpdateInUseTile(Tile tile)
+    {
+        Player[] players = FindObjectsOfType<Player>();
+
+        foreach(Player p in players)
+        {
+            if(tile.transform.position.x == p.transform.position.x && tile.transform.position.z == p.transform.position.z)
+            {
+                tile.weight *= 100;
+            }
+        }
     }
 }

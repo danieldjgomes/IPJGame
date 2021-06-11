@@ -66,7 +66,7 @@ public class Player : MonoBehaviour
 
                     if (hit.transform.Find("movable") != null)
                     {
-                        moviment.movePlayer(hit.transform, this);
+                        moviment.MovePlayer(hit.transform, this);
                         moviment.RemoveMovableTile();
                         playerStage = "idle";
                     }

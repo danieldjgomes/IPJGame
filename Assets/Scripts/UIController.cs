@@ -25,13 +25,13 @@ public class UIController : MonoBehaviour
     {
         if (round.getActualPlayer() == player.gameObject)
         {
-            //outline.OutlineMode = Outline.Mode.OutlineAndSilhouette;
+            
             player.outline.OutlineWidth = 5f;
 
         }
         else
         {
-            //outline.OutlineMode = Outline.Mode.OutlineAndSilhouette;
+            
             player.outline.OutlineWidth = 0;
 
         }
