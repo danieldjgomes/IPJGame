@@ -109,7 +109,7 @@ public class Moviment : MonoBehaviour
                
 
                 if (
-                    GameUtils.Distance.IsEnoughDistance(player.gameObject, tc.gameObject, 1)
+                    GameUtils.Distance.IsEnoughDistance(player.gameObject, tc.gameObject, 1, false)
                     //(int)Mathf.RoundToInt(
                     //    Vector3.Distance(
                     //    new Vector3(

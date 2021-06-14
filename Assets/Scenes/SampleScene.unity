@@ -529,7 +529,7 @@ MonoBehaviour:
   stamina: 10
   speed: 3
   health: 800
-  phisicalDamage: 0
+  phisicalDamage: 10
   defense: 20
   AttackMode: 0
   tile: {fileID: 4666510455317779612, guid: 1b9cd5fa0f163ae45b45df62a3f7cb86, type: 3}
@@ -826,7 +826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stamina: 1000
   speed: 20
-  health: 0
+  health: 100
   phisicalDamage: 0
   defense: 0
   AttackMode: 0

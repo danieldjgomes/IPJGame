@@ -36,24 +36,31 @@ public class UIController : MonoBehaviour
 
         }
 
+
+
     }
 
     public void SetMovimentPlayer(Player player)
     {
-        if (player.playerStage == "idle")
+        if (player.playerStage == Player.PlayerStage.IDLE)
         {
             player.outline.OutlineColor = Color.white;
         }
-        if (player.playerStage == "moving")
+        if (player.playerStage == Player.PlayerStage.MOVING)
         {
             player.outline.OutlineColor = Color.green;
         }
-        if (player.playerStage == "preparingAttack")
+        if (player.playerStage == Player.PlayerStage.PREPARINGATTACK)
+        {
+            player.outline.OutlineColor = Color.yellow;
+        }
+        if (player.playerStage == Player.PlayerStage.TARGETABLE)
         {
             player.outline.OutlineColor = Color.red;
         }
 
 
-        
+
+
     }
 }

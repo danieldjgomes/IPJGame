@@ -8,7 +8,7 @@ public class Round : MonoBehaviour
 
     public GameObject[] chars;
     bool waitForNextFrame = false;
-   
+
 
 
 
@@ -40,11 +40,23 @@ public class Round : MonoBehaviour
             return;
 
         print("Turno de : " + chars[0].name + " Finalizado. Indo para turno de: " + chars[1].name);
+        RestureStamina(chars[0]);
         chars = firstPlayerToLast(chars);
 
 
         waitForNextFrame = true;
     }
+
+    public void RestureStamina(GameObject character)
+    {
+        Player player = character.GetComponent<Player>();
+        if (player)
+        {
+            player.stamina += 5;
+        }
+    }
+
+   
 
     GameObject[] firstPlayerToLast(GameObject[] gos)
     {
@@ -59,10 +71,28 @@ public class Round : MonoBehaviour
     }
 
     public GameObject getActualPlayer()
-    {
-        return chars[0];
+    {   
+        if (chars[0].activeSelf)
+        {
+            return chars[0];
+        }
+        else
+        {
+        firstPlayerToLast(chars);
+            return chars[0];
+        }
+        
     }
 
+    public void SetIdleAllPlayers()
+    {
+        Player[] players = FindObjectsOfType<Player>();
+        foreach (Player player in players)
+        {
+            player.playerStage = Player.PlayerStage.IDLE;
+        }
+
+    }
 }
 
 

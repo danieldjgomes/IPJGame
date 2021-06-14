@@ -18,17 +18,28 @@ public class Attack : MonoBehaviour
         
     }
 
-    public void DoAttack(Player currentPlayer)
+    public void SelectTarget(Player currentPlayer)
     {
         Player[] players = FindObjectsOfType<Player>();
 
         foreach(Player player in players)
         {
-            if (GameUtils.Distance.IsEnoughDistance(currentPlayer.gameObject, player.gameObject, 2) && currentPlayer != player)
+            if (GameUtils.Distance.IsEnoughDistance(currentPlayer.gameObject, player.gameObject, player.GetAttackRangeValue(), true) && currentPlayer != player)
             {
-                print(player.name);
+               
+                player.SetTargable();
+
+                //DoDamage(currentPlayer.phisicalDamage, player);
             }
         }
 
     }
+
+    public void DoDamage(int damage, Player targetPlayer)
+    {
+        targetPlayer.health -= Mathf.FloorToInt(damage * (100f/(100+targetPlayer.defense)));
+        print(targetPlayer.health);
+    }
+
+     
 }
