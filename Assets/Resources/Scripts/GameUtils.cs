@@ -7,7 +7,7 @@ namespace GameUtils
 {
     public class Distance : MonoBehaviour
     {
-        public static bool IsEnoughDistance(GameObject ob1, GameObject ob2, int distance, bool useDiagonals)
+        public static bool IsEnoughDistance(GameObject ob1, GameObject ob2, float distance, bool useDiagonals)
         {
             if (!useDiagonals)
             {

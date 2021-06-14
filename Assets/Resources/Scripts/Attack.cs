@@ -28,16 +28,19 @@ public class Attack : MonoBehaviour
             {
                
                 player.SetTargable();
-
+                
                 //DoDamage(currentPlayer.phisicalDamage, player);
             }
         }
 
     }
 
-    public void DoDamage(int damage, Player targetPlayer)
+    public void DoDamage(int damage, Player targetPlayer, RaycastHit hit)
     {
-        targetPlayer.health -= Mathf.FloorToInt(damage * (100f/(100+targetPlayer.defense)));
+
+        int appliedDamage = Mathf.FloorToInt(damage * (100f / (100 + targetPlayer.defense)));
+        targetPlayer.health -= appliedDamage;
+        UIController.ShowDamagePopUp(damage.ToString(),hit.transform);
         print(targetPlayer.health);
     }
 

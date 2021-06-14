@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         playerStage = PlayerStage.IDLE;
-        
+       
     }
 
     // Update is called once per frame
@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
     {
         limitStamina();
         //ui.SetOutlineTurn(this);
-        ui.SetMovimentPlayer(this);
+        ui.SetOutLineColor(this);
 
         if (this.health <= 0)
         {
@@ -97,7 +97,7 @@ public class Player : MonoBehaviour
 
                         if (player.playerStage == PlayerStage.TARGETABLE)
                         {
-                            attack.DoDamage(this.phisicalDamage, player);
+                            attack.DoDamage(this.phisicalDamage, player, hit);
                             this.stamina -= 3;
                         }
                     }
@@ -193,16 +193,16 @@ public class Player : MonoBehaviour
              this.playerStage = PlayerStage.TARGETABLE;
     }
 
-    public int GetAttackRangeValue()
+    public float GetAttackRangeValue()
     {
         
         if (this.attackRange == AttackRange.MELEE)
         {
-            return 1;
+            return 1.43f;
         }
         else
         {
-            return 4;
+            return 4f;
         }
     }
 
