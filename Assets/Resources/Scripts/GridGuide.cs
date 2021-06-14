@@ -5,13 +5,16 @@ using UnityEngine;
 public class GridGuide : MonoBehaviour
 {
     public int columnLength, rowLength;
-    public float x_Space, z_Space;
+    private float x_Space, z_Space;
     public GameObject prefab;
+    public Tile tile;
 
  
     // Start is called before the first frame update
     void Start()
     {
+        x_Space = tile.transform.localScale.x;
+        z_Space = tile.transform.localScale.z;
         for (int i = 0; i < columnLength * rowLength; i++)
         {
             GameObject tile = Instantiate(prefab, new Vector3(

@@ -26,10 +26,8 @@ public class Attack : MonoBehaviour
         {
             if (GameUtils.Distance.IsEnoughDistance(currentPlayer.gameObject, player.gameObject, currentPlayer.GetAttackRangeValue(), true) && currentPlayer != player)
             {
-               
                 player.SetTargable();
-                
-                //DoDamage(currentPlayer.phisicalDamage, player);
+               
             }
         }
 

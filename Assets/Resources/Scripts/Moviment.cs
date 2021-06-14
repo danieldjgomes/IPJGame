@@ -14,8 +14,8 @@ public class Moviment : MonoBehaviour
         foreach (GameObject go in gos)
         {
 
-            if (Vector3.Distance(new Vector3(go.transform.position.x, 1, go.transform.position.z), new Vector3(currentPostion.x, 1, currentPostion.z)) <= player.speed &&
-                Vector3.Distance(new Vector3(go.transform.position.x, 1, go.transform.position.z), new Vector3(currentPostion.x, 1, currentPostion.z)) <= player.stamina)
+            if (Vector3.Distance(new Vector3(go.transform.position.x, 1, go.transform.position.z), new Vector3(currentPostion.x, 1, currentPostion.z)) <= player.speed * tile.transform.localScale.x &&
+                Vector3.Distance(new Vector3(go.transform.position.x, 1, go.transform.position.z), new Vector3(currentPostion.x, 1, currentPostion.z)) <= player.stamina * tile.transform.localScale.x)
             {
                 tile.setColorGuideActive(go.transform);
                 GameObject obj = new GameObject("movable");
@@ -109,17 +109,8 @@ public class Moviment : MonoBehaviour
                
 
                 if (
-                    GameUtils.Distance.IsEnoughDistance(player.gameObject, tc.gameObject, 1, false)
-                    //(int)Mathf.RoundToInt(
-                    //    Vector3.Distance(
-                    //    new Vector3(
-                    //        player.transform.position.x, 1,
-                    //        player.transform.position.z),
-                    //    new Vector3(
-                    //        tc.transform.position.x, 1,
-                    //        tc.transform.position.z))) <= 1 
-                    //        && (player.transform.position.x == tc.transform.position.x || (player.transform.position.z == tc.transform.position.z))
-                    //        )
+                    GameUtils.Distance.IsEnoughDistance(player.gameObject, tc.gameObject, tile.transform.localScale.x, false)
+                  
                     )
                 {
                    
@@ -143,15 +134,7 @@ public class Moviment : MonoBehaviour
                                 path = tc;
                             }
 
-                            //if (tc.transform.position.x == player.transform.position.x || tc.transform.position.z == player.transform.position.z)
-                            //{
-                            //    print(path.weight);
-                            //    path = tc;
-
-                            //}
-
-
-                            //TODO: Arrumar erro na movimentação
+                           
 
                         }
                     }

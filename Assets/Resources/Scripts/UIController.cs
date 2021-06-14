@@ -40,24 +40,6 @@ public class UIController : MonoBehaviour
         instance.SetText(damage);
     }
 
-    public void SetOutlineTurn(Player player)
-    {
-        //if (round.getActualPlayer() == player.gameObject)
-        //{
-            
-        //    player.outline.OutlineWidth = 5f;
-
-        //}
-        //else
-        //{
-            
-        //    player.outline.OutlineWidth = 0f;
-
-        //}
-
-
-
-    }
 
     public void SetOutLineColor(Player player)
     {

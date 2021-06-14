@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     public int health;
     public int phisicalDamage;
     public int defense;
+    public int attackCost;
   
 
     public Tile tile;
@@ -84,7 +85,7 @@ public class Player : MonoBehaviour
      
             }
 
-            if (Input.GetMouseButtonDown(0) && playerStage == PlayerStage.PREPARINGATTACK && this.stamina >= 3)
+            if (Input.GetMouseButtonDown(0) && playerStage == PlayerStage.PREPARINGATTACK && this.stamina >= attackCost)
             {
                 ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -98,7 +99,7 @@ public class Player : MonoBehaviour
                         if (player.playerStage == PlayerStage.TARGETABLE)
                         {
                             attack.DoDamage(this.phisicalDamage, player, hit);
-                            this.stamina -= 3;
+                            this.stamina -= attackCost;
                         }
                     }
                     
@@ -191,6 +192,7 @@ public class Player : MonoBehaviour
     public void SetTargable()
     {
              this.playerStage = PlayerStage.TARGETABLE;
+
     }
 
     public float GetAttackRangeValue()
@@ -198,11 +200,11 @@ public class Player : MonoBehaviour
         
         if (this.attackRange == AttackRange.MELEE)
         {
-            return 1.43f;
+            return 1.43f * tile.transform.localScale.x;
         }
         else
         {
-            return 4f;
+            return 4f * tile.transform.localScale.x;
         }
     }
 
