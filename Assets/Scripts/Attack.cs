@@ -24,7 +24,7 @@ public class Attack : MonoBehaviour
 
         foreach(Player player in players)
         {
-            if (GameUtils.Distance.IsEnoughDistance(currentPlayer.gameObject, player.gameObject, player.GetAttackRangeValue(), true) && currentPlayer != player)
+            if (GameUtils.Distance.IsEnoughDistance(currentPlayer.gameObject, player.gameObject, currentPlayer.GetAttackRangeValue(), true) && currentPlayer != player)
             {
                
                 player.SetTargable();

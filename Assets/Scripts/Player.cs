@@ -195,6 +195,7 @@ public class Player : MonoBehaviour
 
     public int GetAttackRangeValue()
     {
+        
         if (this.attackRange == AttackRange.MELEE)
         {
             return 1;
