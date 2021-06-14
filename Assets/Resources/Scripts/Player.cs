@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     public int MaxStamina;
     public int speed;
     public int health;
+    public int maxHealth;
     public int phisicalDamage;
     public int defense;
     public int attackCost;
@@ -41,8 +42,9 @@ public class Player : MonoBehaviour
     public Outline outline;
     public Attack attack;
     public AttackRange attackRange;
+    
 
-   
+
 
 
     // Start is called before the first frame update

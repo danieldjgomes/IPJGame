@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    public Text text;
+    public Text playerName;
+    public Text playerStamina;
+    public Text playersHealth;
+
     public Round round;
    
 
@@ -27,14 +30,33 @@ public class UIController : MonoBehaviour
     }
     void Update()
     {
-        text.text = round.getActualPlayer().name;
+        Player[] players = FindObjectsOfType<Player>();
+        string playersList = "";
+
+        foreach(Player player in players)
+        {
+            if (player.name == round.getActualPlayer().name)
+            {
+                playerName.text = player.name;
+                playerStamina.text = player.stamina + "/" + player.MaxStamina;
+            }
+
+            playersList += string.Format("{0}: {1}/{2} \n", player.name, player.health, player.maxHealth);
+
+            
+        }
+        playersHealth.text = playersList;
+
+       
+        
+
         
     }
 
     public static void ShowDamagePopUp(string damage, Transform location) {
 
         FloatingText instance = Instantiate(floatingText);
-        Vector2 screenPosition = Camera.main.WorldToScreenPoint(new Vector3(location.position.x, location.position.y,location.position.z));
+        Vector2 screenPosition = Camera.main.WorldToScreenPoint(new Vector3(location.position.x, location.position.y+1.0f,location.position.z));
         instance.transform.SetParent(canvas.transform, false);
         instance.transform.position = screenPosition;
         instance.SetText(damage);

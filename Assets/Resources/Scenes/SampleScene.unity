@@ -601,7 +601,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 699930241}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9, y: 1, z: -9}
+  m_LocalPosition: {x: -7, y: 1, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1859442192}
@@ -625,6 +625,7 @@ MonoBehaviour:
   health: 800
   phisicalDamage: 10
   defense: 20
+  attackCost: 3
   tile: {fileID: 4666510455317779612, guid: 1b9cd5fa0f163ae45b45df62a3f7cb86, type: 3}
   playerStage: 0
   round: {fileID: 725829460}
@@ -864,8 +865,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.3884564, y: 0.31801513, z: -0.1448873, w: 0.85262865}
-  m_LocalPosition: {x: 0.15127659, y: 11.120855, z: -1.8038268}
+  m_LocalRotation: {x: 0.2996564, y: 0.27925968, z: -0.092202425, w: 0.90758955}
+  m_LocalPosition: {x: -1.8619909, y: 14.952116, z: -3.8370705}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -924,6 +925,7 @@ MonoBehaviour:
   health: 900
   phisicalDamage: 12
   defense: 20
+  attackCost: 3
   tile: {fileID: 4666510455317779612, guid: 1b9cd5fa0f163ae45b45df62a3f7cb86, type: 3}
   playerStage: 0
   round: {fileID: 725829460}
@@ -1000,7 +1002,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353717643}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -9}
+  m_LocalPosition: {x: 5, y: 1, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1859442192}
@@ -1055,9 +1057,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   columnLength: 10
   rowLength: 10
-  x_Space: 1
-  z_Space: 1
   prefab: {fileID: 620769835587035728, guid: 1b9cd5fa0f163ae45b45df62a3f7cb86, type: 3}
+  tile: {fileID: 4666510455317779612, guid: 1b9cd5fa0f163ae45b45df62a3f7cb86, type: 3}
 --- !u!4 &1827690545
 Transform:
   m_ObjectHideFlags: 0
@@ -1223,6 +1224,7 @@ MonoBehaviour:
   health: 900
   phisicalDamage: 12
   defense: 20
+  attackCost: 3
   tile: {fileID: 4666510455317779612, guid: 1b9cd5fa0f163ae45b45df62a3f7cb86, type: 3}
   playerStage: 0
   round: {fileID: 725829460}
@@ -1299,7 +1301,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993710937}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -6}
+  m_LocalPosition: {x: -1, y: 1, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1859442192}
