@@ -616,6 +616,8 @@
     <Compile Include="Assets\Resources\Scripts\GameUtils.cs" />
     <Compile Include="Assets\Resources\Scripts\GridGuide.cs" />
     <Compile Include="Assets\Resources\Scripts\Moviment.cs" />
+    <Compile Include="Assets\Resources\Scripts\Obstacle.cs" />
+    <Compile Include="Assets\Resources\Scripts\Obstacles\AirBag.cs" />
     <Compile Include="Assets\Resources\Scripts\Player.cs" />
     <Compile Include="Assets\Resources\Scripts\Round.cs" />
     <Compile Include="Assets\Resources\Scripts\Tile.cs" />

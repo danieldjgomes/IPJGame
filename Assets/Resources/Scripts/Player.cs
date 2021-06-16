@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
+
     public enum AttackRange
     {
         MELEE, RANGED
@@ -32,8 +33,8 @@ public class Player : MonoBehaviour
 
     public Tile tile;
     public PlayerStage playerStage;
-    RaycastHit hit;
-    Ray ray;
+    public RaycastHit hit;
+    public Ray ray;
     public Round round;
     public Moviment moviment;
 
@@ -92,11 +93,17 @@ public class Player : MonoBehaviour
 
             }
 
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                this.UseSkillW();
+
+            }
+
             if (Input.GetMouseButtonDown(0) && playerStage == PlayerStage.PREPARINGATTACK && this.stamina >= attackCost)
             {
                 ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-                if (Physics.Raycast(ray, out hit))
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1<<8))
                 {
                     if (hit.transform.CompareTag("Player"))
                     {
@@ -192,7 +199,10 @@ public class Player : MonoBehaviour
     public virtual void UseSkillQ()
     {
     }
-   
+    public virtual void UseSkillW()
+    {
+    }
+
 
     private void limitStamina()
     {
