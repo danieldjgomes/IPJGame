@@ -58,7 +58,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         limitStamina();
-        //ui.SetOutlineTurn(this);
         ui.SetOutLineColor(this);
 
         if (this.health <= 0)
@@ -74,7 +73,7 @@ public class Player : MonoBehaviour
 
 
 
-            if (round.getActualPlayer() == this.gameObject && this.gameObject.activeSelf)
+        if (round.getActualPlayer() == this.gameObject && this.gameObject.activeSelf)
             {
 
             
@@ -85,6 +84,12 @@ public class Player : MonoBehaviour
                 this.playerStage = PlayerStage.PREPARINGATTACK;
                 attack.SelectTarget(this);
      
+            }
+
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                this.UseSkillQ();
+
             }
 
             if (Input.GetMouseButtonDown(0) && playerStage == PlayerStage.PREPARINGATTACK && this.stamina >= attackCost)
@@ -183,6 +188,11 @@ public class Player : MonoBehaviour
         
 
     }
+
+    public virtual void UseSkillQ()
+    {
+    }
+   
 
     private void limitStamina()
     {
