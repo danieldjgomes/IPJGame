@@ -18,9 +18,6 @@ public class Player : MonoBehaviour
         IDLE, MOVING, PREPARINGATTACK, TARGETABLE
     }
 
-   
-
-    
     public int stamina;
     public int MaxStamina;
     public int speed;
@@ -41,13 +38,9 @@ public class Player : MonoBehaviour
 
     public UIController ui;
     public Outline outline;
-    public Attack attack;
+    public Battle battle;
     public AttackRange attackRange;
-    
-
-
-
-
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -83,7 +76,7 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.CapsLock))
             {
                 this.playerStage = PlayerStage.PREPARINGATTACK;
-                attack.SelectTarget(this);
+                battle.SelectTarget(this);
      
             }
 
@@ -99,11 +92,17 @@ public class Player : MonoBehaviour
 
             }
 
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                this.UseSkillE();
+
+            }
+
             if (Input.GetMouseButtonDown(0) && playerStage == PlayerStage.PREPARINGATTACK && this.stamina >= attackCost)
             {
                 ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1<<8))
+                if (Physics.Raycast(ray, out hit))
                 {
                     if (hit.transform.CompareTag("Player"))
                     {
@@ -112,7 +111,8 @@ public class Player : MonoBehaviour
 
                         if (player.playerStage == PlayerStage.TARGETABLE)
                         {
-                            attack.DoDamage(this.phisicalDamage, player, hit);
+
+                            battle.DoDamage(this.phisicalDamage, player);
                             this.stamina -= attackCost;
                         }
                     }
@@ -200,6 +200,9 @@ public class Player : MonoBehaviour
     {
     }
     public virtual void UseSkillW()
+    {
+    }
+    public virtual void UseSkillE()
     {
     }
 

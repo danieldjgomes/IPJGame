@@ -65,8 +65,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Resources\QuickOutline\Scripts\Outline.cs" />
-    <Compile Include="Assets\Resources\Scripts\Attack.cs" />
     <Compile Include="Assets\Resources\Scripts\AttackMode.cs" />
+    <Compile Include="Assets\Resources\Scripts\Battle.cs" />
     <Compile Include="Assets\Resources\Scripts\CameraController.cs" />
     <Compile Include="Assets\Resources\Scripts\Champions\Dilma.cs" />
     <Compile Include="Assets\Resources\Scripts\FloatingText.cs" />

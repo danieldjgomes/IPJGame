@@ -4,7 +4,7 @@ using UnityEngine;
 using GameUtils;
 
 
-public class Attack : MonoBehaviour
+public class Battle : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -33,12 +33,12 @@ public class Attack : MonoBehaviour
 
     }
 
-    public void DoDamage(int damage, Player targetPlayer, RaycastHit hit)
+    public void DoDamage(int damage, Player targetPlayer)
     {
 
         int appliedDamage = Mathf.FloorToInt(damage * (100f / (100 + targetPlayer.defense)));
         targetPlayer.health -= appliedDamage;
-        UIController.ShowDamagePopUp(damage.ToString(),hit.transform);
+        UIController.ShowDamagePopUp(damage.ToString(),targetPlayer.transform);
         print(targetPlayer.health);
     }
 

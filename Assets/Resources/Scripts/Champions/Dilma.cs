@@ -7,20 +7,27 @@ public class Dilma : Player
 
     bool waitForNextFrame = false;
     public int WCounter = 3;
+    public int QCounter = 1;
 
 
     public enum DilmaStage
     {
-        IDLE,CASTINGQ, CASTINGW
+        IDLE, CASTINGQ, CASTINGW
     }
 
     public DilmaStage dilmaStage;
 
     private void LateUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            
+            dilmaStage = DilmaStage.IDLE;
+        }
+
+        castingQTrigger();
         castingWTrigger();
         waitForNextFrame = false;
-        
 
     }
 
@@ -33,15 +40,16 @@ public class Dilma : Player
         {
             Tile[] tiles = FindObjectsOfType<Tile>();
             AirBag[] airBags = FindObjectsOfType<AirBag>();
+            Player[] players = FindObjectsOfType<Player>();
 
             if (Physics.Raycast(ray, out hit))
             {
                 foreach (Tile tile in tiles)
                 {
                     if (GameUtils.Distance.IsEnoughDistance(this.gameObject, tile.gameObject, 2 * tile.transform.localScale.x, true)
-                        && (tile.transform.position.x != this.transform.position.x || (tile.transform.position.z != this.transform.position.z))
+                        && (hit.transform.position.x != this.transform.position.x || (hit.transform.position.z != this.transform.position.z))
                         && (hit.transform.position.x == tile.transform.position.x && hit.transform.position.z == tile.transform.position.z)
-                        && !HasAirBagHere(tile, airBags)
+                        && !HasSomeHere(tile, airBags) && !HasSomePlayerHere(hit, players)
                         )
 
                     {
@@ -79,44 +87,56 @@ public class Dilma : Player
         }
     }
 
-    public override void UseSkillQ()
+    public void castingQTrigger()
     {
         if (waitForNextFrame)
             return;
 
-        Tile[] tiles = FindObjectsOfType<Tile>();
-        AirBag[] airBags = FindObjectsOfType<AirBag>();
-
-        foreach (Tile tile in tiles)
+        if (this.dilmaStage == DilmaStage.CASTINGQ && Input.GetMouseButtonUp(0) && QCounter > 0)
         {
-            if (GameUtils.Distance.IsEnoughDistance(this.gameObject, tile.gameObject, 1 * tile.transform.localScale.x, true)
-                && (tile.transform.position.x != this.transform.position.x || (tile.transform.position.z != this.transform.position.z))
-                && !HasAirBagHere(tile,airBags)
-                )
+            Tile[] tiles = FindObjectsOfType<Tile>();
+            Player[] players = FindObjectsOfType<Player>();
 
+            if (Physics.Raycast(ray, out hit))
             {
-                AirBag airBag = Resources.Load<AirBag>("Prefabs/AirBag");
-                if (airBag)
+                foreach (Tile tile in tiles)
                 {
-                    AirBag obj = Instantiate(airBag, new Vector3(0, 1, 0), Quaternion.identity);
-                    obj.transform.SetParent(tile.transform, false);
-                    
+                    if (GameUtils.Distance.IsEnoughDistance(this.gameObject, hit.transform.gameObject, 5 * tile.transform.localScale.x, true))
+                    {
+                        print(tile.transform.position.x);
+                        foreach (Player player in players)
+                        {
+                            if (hit.transform.position.x == player.transform.position.x && hit.transform.position.z == player.transform.position.z)
+                            {
+                                print(player.name);
+                                battle.DoDamage(5 * this.phisicalDamage, player);
+                                QCounter -= 1;
+                                
+                            }
+                        }
+                        break;
 
+                    }
                 }
-                else
+
+
+                if (QCounter <= 0)
                 {
-                    print("Não achado");
+                   
+                    this.stamina -= 5;
+                    this.dilmaStage = DilmaStage.IDLE;
+                    QCounter = 1;
                 }
+                waitForNextFrame = true;
 
 
             }
-        }
-        this.stamina -= 5;
-        waitForNextFrame = true;
 
+
+        }
     }
 
-    private bool HasAirBagHere(Tile tile, AirBag[] airBags)
+    private bool HasSomeHere(Tile tile, AirBag[] airBags)
     {
        foreach(AirBag airBag in airBags)
         {
@@ -129,10 +149,38 @@ public class Dilma : Player
 
     }
 
+    private bool HasSomePlayerHere(RaycastHit ray, Player[] players)
+    {
+        foreach (Player player in players)
+        {
+            if (tile.transform.position.x == player.transform.position.x && tile.transform.position.z == player.transform.position.z)
+            {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
 
     public override void UseSkillW()
     {
         this.dilmaStage = DilmaStage.CASTINGW;
+    }
+
+    public override void UseSkillQ()
+    {
+        this.dilmaStage = DilmaStage.CASTINGQ;
+    }
+
+    public override void UseSkillE()
+    {
+        Player[] players = FindObjectsOfType<Player>();
+
+        foreach(Player player in players)
+        {
+            battle.DoDamage(3 * phisicalDamage, player);
+        }
     }
 
 }
