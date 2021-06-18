@@ -137,8 +137,6 @@ public class Player : MonoBehaviour
 
             {
                 ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-
                 if (Physics.Raycast(ray, out hit))
                 {
 
@@ -146,7 +144,7 @@ public class Player : MonoBehaviour
                     {
                         moviment.SetMovableTile(this);
                         playerStage = PlayerStage.MOVING;
-
+                            
                     }
 
                 }
