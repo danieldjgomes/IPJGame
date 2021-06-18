@@ -9,47 +9,39 @@ public class Dilma : Player
     public int WCounter = 3;
     public int QCounter = 1;
 
-
-    public enum DilmaStage
-    {
-        IDLE, CASTINGQ, CASTINGW
-    }
-
-    public DilmaStage dilmaStage;
-
     private void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            
-            dilmaStage = DilmaStage.IDLE;
-        }
-
-        castingQTrigger();
-        castingWTrigger();
+        
+        CastingQTrigger();
+        CastingWTrigger();
         waitForNextFrame = false;
 
     }
 
-    private void castingWTrigger()
+    private void CastingWTrigger()
     {
         if (waitForNextFrame)
             return;
 
-        if (this.dilmaStage == DilmaStage.CASTINGW && Input.GetMouseButtonUp(0) && WCounter > 0)
+        if (this.playerStage == PlayerStage.CASTINGW && Input.GetMouseButtonUp(0) && WCounter > 0)
         {
+
             Tile[] tiles = FindObjectsOfType<Tile>();
             AirBag[] airBags = FindObjectsOfType<AirBag>();
             Player[] players = FindObjectsOfType<Player>();
+            int layerMask = 1 << LayerMask.NameToLayer("Tile");
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
             {
-                foreach (Tile tile in tiles)
+                Tile tile = hit.transform.GetComponent<Tile>();
+                
+
+                if (tile)
                 {
                     if (GameUtils.Distance.IsEnoughDistance(this.gameObject, tile.gameObject, 2 * tile.transform.localScale.x, true)
-                        && (hit.transform.position.x != this.transform.position.x || (hit.transform.position.z != this.transform.position.z))
+                        
                         && (hit.transform.position.x == tile.transform.position.x && hit.transform.position.z == tile.transform.position.z)
-                        && !HasSomeHere(tile, airBags) && !HasSomePlayerHere(hit, players)
+                        && !HasSomeHere(tile, airBags) && tile.tileState != Tile.TileState.INUSE
                         )
 
                     {
@@ -69,64 +61,57 @@ public class Dilma : Player
 
 
                     }
+
+
+                    if (WCounter <= 0)
+                    {
+                        WCounter = 3;
+                        this.stamina -= 5;
+
+                        this.playerStage = PlayerStage.IDLE;
+                    }
+                    waitForNextFrame = true;
+
+
                 }
+
+
                 
 
-                if (WCounter <= 0)
-                {
-                    WCounter = 3;
-                    this.stamina -= 5;
-                    this.dilmaStage = DilmaStage.IDLE;
-                }
-                waitForNextFrame = true;
-
-
             }
-        
+
 
         }
     }
 
-    public void castingQTrigger()
+    public void CastingQTrigger()
     {
         if (waitForNextFrame)
             return;
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (this.dilmaStage == DilmaStage.CASTINGQ && Input.GetMouseButtonUp(0) && QCounter > 0)
-        {
-            Tile[] tiles = FindObjectsOfType<Tile>();
-            Player[] players = FindObjectsOfType<Player>();
-
-            if (Physics.Raycast(ray, out hit))
+        if (this.playerStage == PlayerStage.CASTINGQ && Input.GetMouseButtonUp(0))
+           
+        { 
+           int layerMask = 1 << LayerMask.NameToLayer("Player");
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
             {
-                foreach (Tile tile in tiles)
-                {
+                
                     if (GameUtils.Distance.IsEnoughDistance(this.gameObject, hit.transform.gameObject, 5 * tile.transform.localScale.x, true))
                     {
-                        print(tile.transform.position.x);
-                        foreach (Player player in players)
+                       Player player = hit.transform.GetComponent<Player>();
+                       print("TriggedQ");
+                        if (player)
                         {
-                            if (hit.transform.position.x == player.transform.position.x && hit.transform.position.z == player.transform.position.z)
-                            {
-                                print(player.name);
-                                battle.DoDamage(5 * this.phisicalDamage, player);
-                                QCounter -= 1;
-                                
-                            }
-                        }
-                        break;
+                            battle.DoDamage(5 * this.phisicalDamage, player);
+                            this.playerStage = PlayerStage.IDLE;
+                    }
+
+
+
 
                     }
-                }
-
-
-                if (QCounter <= 0)
-                {
-                   
-                    this.stamina -= 5;
-                    this.dilmaStage = DilmaStage.IDLE;
-                    QCounter = 1;
-                }
+               
                 waitForNextFrame = true;
 
 
@@ -165,12 +150,12 @@ public class Dilma : Player
 
     public override void UseSkillW()
     {
-        this.dilmaStage = DilmaStage.CASTINGW;
+        this.playerStage = PlayerStage.CASTINGW;
     }
 
     public override void UseSkillQ()
     {
-        this.dilmaStage = DilmaStage.CASTINGQ;
+        this.playerStage = PlayerStage.CASTINGQ;
     }
 
     public override void UseSkillE()

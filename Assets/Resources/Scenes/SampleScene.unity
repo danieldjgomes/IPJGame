@@ -151,11 +151,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 653016654}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -209.5, y: -321}
+  m_AnchoredPosition: {x: -209.5, y: -153}
   m_SizeDelta: {x: -461, y: -318}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &14152170
@@ -211,9 +211,8 @@ GameObject:
   m_Component:
   - component: {fileID: 75175560}
   - component: {fileID: 75175559}
-  - component: {fileID: 75175561}
   m_Layer: 0
-  m_Name: AttackController
+  m_Name: BattleController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -245,96 +244,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &75175561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 75175558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7f467b0c3a0a3a44b908f858442c4d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &133270352
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 133270353}
-  - component: {fileID: 133270355}
-  - component: {fileID: 133270354}
-  m_Layer: 5
-  m_Name: Text2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &133270353
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 133270352}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.32586, y: 0.32586, z: 0.32586}
-  m_Children: []
-  m_Father: {fileID: 653016654}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -360, y: 81}
-  m_SizeDelta: {x: -461, y: -318}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &133270354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 133270352}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 0
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Tab Para trocar turno
---- !u!222 &133270355
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 133270352}
-  m_CullTransparentMesh: 0
 --- !u!4 &479854693 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4964549078586539649, guid: edb94d38843e1d04aa5307e9ba22077a,
@@ -478,8 +387,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 656232850}
-  - {fileID: 133270353}
-  - {fileID: 1849128175}
   - {fileID: 14152169}
   - {fileID: 971740600}
   m_Father: {fileID: 0}
@@ -723,7 +630,7 @@ MonoBehaviour:
   moviment: {fileID: 621532359}
   ui: {fileID: 653016655}
   outline: {fileID: 699930247}
-  attack: {fileID: 75175559}
+  battle: {fileID: 75175559}
   attackRange: 1
 --- !u!114 &699930247
 MonoBehaviour:
@@ -1048,11 +955,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 653016654}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 470, y: 141}
+  m_AnchoredPosition: {x: 204, y: 141}
   m_SizeDelta: {x: -461, y: -318}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1353717643
@@ -1102,7 +1009,7 @@ MonoBehaviour:
   moviment: {fileID: 621532359}
   ui: {fileID: 653016655}
   outline: {fileID: 1353717649}
-  attack: {fileID: 75175559}
+  battle: {fileID: 75175559}
   attackRange: 0
 --- !u!65 &1353717645
 BoxCollider:
@@ -1243,84 +1150,6 @@ Transform:
   m_Father: {fileID: 1859442192}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1849128174
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1849128175}
-  - component: {fileID: 1849128177}
-  - component: {fileID: 1849128176}
-  m_Layer: 5
-  m_Name: Text3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1849128175
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1849128174}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.32586, y: 0.32586, z: 0.32586}
-  m_Children: []
-  m_Father: {fileID: 653016654}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -360, y: 63}
-  m_SizeDelta: {x: -461, y: -318}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1849128176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1849128174}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 0
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Caps para entrar no modo de combate
---- !u!222 &1849128177
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1849128174}
-  m_CullTransparentMesh: 0
 --- !u!1 &1859442191
 GameObject:
   m_ObjectHideFlags: 0
@@ -1403,7 +1232,7 @@ MonoBehaviour:
   moviment: {fileID: 621532359}
   ui: {fileID: 653016655}
   outline: {fileID: 1993710943}
-  attack: {fileID: 75175559}
+  battle: {fileID: 75175559}
   attackRange: 0
 --- !u!65 &1993710939
 BoxCollider:
@@ -1577,6 +1406,11 @@ PrefabInstance:
     - target: {fileID: 6366602134614244531, guid: edb94d38843e1d04aa5307e9ba22077a,
         type: 3}
       propertyPath: attack
+      value: 
+      objectReference: {fileID: 75175559}
+    - target: {fileID: 6366602134614244531, guid: edb94d38843e1d04aa5307e9ba22077a,
+        type: 3}
+      propertyPath: battle
       value: 
       objectReference: {fileID: 75175559}
     - target: {fileID: 6366602134614244531, guid: edb94d38843e1d04aa5307e9ba22077a,

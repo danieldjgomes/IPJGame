@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
 
     public enum PlayerStage
     {
-        IDLE, MOVING, PREPARINGATTACK, TARGETABLE
+        IDLE, MOVING, PREPARINGATTACK, TARGETABLE, CASTINGQ, CASTINGW, CASTINGE
     }
 
     public int stamina;
@@ -133,7 +133,7 @@ public class Player : MonoBehaviour
             
 
 
-            if (Input.GetMouseButtonDown(0) && playerStage == PlayerStage.IDLE)
+            if (Input.GetMouseButtonDown(0) && playerStage == PlayerStage.IDLE && !this.IsCastingSkill())
 
             {
                 ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -232,6 +232,16 @@ public class Player : MonoBehaviour
             return 4f * tile.transform.localScale.x;
         }
     }
+
+    private bool IsCastingSkill()
+    {
+        if (this.playerStage == PlayerStage.CASTINGQ || this.playerStage == PlayerStage.CASTINGW || this.playerStage == PlayerStage.CASTINGE)
+        {
+            return true;
+        }
+
+        return false;
+    } 
 
 
 

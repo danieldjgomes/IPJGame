@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6389734005813445029}
   - component: {fileID: 8514089352202580323}
   - component: {fileID: 4666510455317779612}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GridReference
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 3554556896975722536}
   - component: {fileID: 4100345270333027828}
   - component: {fileID: 7923513485950016070}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WeightIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}

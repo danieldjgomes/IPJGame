@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+    public enum TileState
+    {
+        IDLE,INUSE
+    }
+    public TileState tileState;
     public Material selectedMaterial;
     public Material defaultMaterial;
     public Material matAtlantica;
@@ -32,7 +37,10 @@ public class Tile : MonoBehaviour
     void Update()
     {
         this.text.text = this.weight.ToString();
-        
+        SetStateByPlayer();
+
+
+
         if (this.biome == "matAtlantica")
         {
             transform.GetComponent<Renderer>().material = matAtlantica;
@@ -57,6 +65,23 @@ public class Tile : MonoBehaviour
 
 
     }
+
+
+    private void SetStateByPlayer()
+    {
+        Vector3 up = transform.TransformDirection(Vector3.up);
+
+        if (Physics.Raycast(transform.position, up, 3))
+        {
+            this.tileState = TileState.INUSE;
+        }
+        else
+        {
+            this.tileState = TileState.IDLE;
+        }
+
+    }
+
 
     string randomBiome()
     {
