@@ -92,15 +92,16 @@ public class Dilma : Player
 
         if (this.playerStage == PlayerStage.CASTINGQ && Input.GetMouseButtonUp(0))
            
-        { 
-           int layerMask = 1 << LayerMask.NameToLayer("Player");
+        {
+            print("TriggedQ");
+            int layerMask = 1 << LayerMask.NameToLayer("Player");
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
             {
-                
-                    if (GameUtils.Distance.IsEnoughDistance(this.gameObject, hit.transform.gameObject, 5 * tile.transform.localScale.x, true))
+               
+                if (GameUtils.Distance.IsEnoughDistance(this.gameObject, hit.transform.gameObject, 5 * tile.transform.localScale.x, true))
                     {
                        Player player = hit.transform.GetComponent<Player>();
-                       print("TriggedQ");
+                       
                         if (player)
                         {
                             battle.DoDamage(5 * this.phisicalDamage, player);
