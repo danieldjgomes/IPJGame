@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
         MELEE, RANGED
     }
 
+   
+
 
     public enum PlayerStage
     {
@@ -30,6 +32,7 @@ public class Player : MonoBehaviour
 
     public Tile tile;
     public PlayerStage playerStage;
+    
     public RaycastHit hit;
     public Ray ray;
     public Round round;
