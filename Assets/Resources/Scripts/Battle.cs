@@ -42,5 +42,12 @@ public class Battle : MonoBehaviour
         print(targetPlayer.health);
     }
 
-     
+    public void DoHeal(int value, Player targetPlayer)
+    {
+        //int appliedDamage = Mathf.FloorToInt(damage * (100f / (100 + targetPlayer.defense)));
+        targetPlayer.health += value;
+        //UIController.ShowDamagePopUp(damage.ToString(), targetPlayer.transform);
+        print(targetPlayer.health);
+    }
+
 }

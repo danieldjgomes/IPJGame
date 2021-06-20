@@ -69,14 +69,17 @@ public class Moviment : MonoBehaviour
 
             if (tc.transform.position.x != hit.transform.position.x && tc.transform.position.z != hit.transform.position.z)
             {
-                tc.weight = Mathf.Floor(
+                tc.weight = 
+                    //Mathf.Floor(
                  Vector3.Distance(
                  new Vector3(
                      hit.transform.position.x,
                      hit.transform.position.z),
                  new Vector3(
                      tc.transform.position.x,
-                     tc.transform.position.z)));
+                     tc.transform.position.z))
+                    //)
+                    ;
             }
 
             UpdateInUseTile(tc);
