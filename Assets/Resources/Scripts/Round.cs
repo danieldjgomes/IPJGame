@@ -39,9 +39,14 @@ public class Round : MonoBehaviour
         if (waitForNextFrame)
             return;
 
-        print("Turno de : " + chars[0].name + " Finalizado. Indo para turno de: " + chars[1].name);
+        Player player = chars[0].GetComponent<Player>();
+        if (player && player.crowdControl == Player.CrowdControl.CONFUSE)
+        {
+            player.crowdControl = Player.CrowdControl.NONE;
+        }
         RestureStamina(chars[0]);
         chars = firstPlayerToLast(chars);
+
 
 
         waitForNextFrame = true;

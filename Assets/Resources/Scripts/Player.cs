@@ -12,6 +12,11 @@ public class Player : MonoBehaviour
         MELEE, RANGED
     }
 
+    public enum CrowdControl
+    {
+        NONE, TAUNT, ROOTED, CONFUSE
+    }
+
    
 
 
@@ -32,7 +37,8 @@ public class Player : MonoBehaviour
 
     public Tile tile;
     public PlayerStage playerStage;
-    
+    public CrowdControl crowdControl;
+    public Player tauntedTarget;
     public RaycastHit hit;
     public Ray ray;
     public Round round;
@@ -73,123 +79,140 @@ public class Player : MonoBehaviour
         if (round.getActualPlayer() == this.gameObject && this.gameObject.activeSelf)
             {
 
-            
-
-
-            if (Input.GetKeyDown(KeyCode.CapsLock))
+            if (this.crowdControl != CrowdControl.CONFUSE)
             {
-                this.playerStage = PlayerStage.PREPARINGATTACK;
-                battle.SelectTarget(this);
-     
-            }
 
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                this.UseSkillQ();
 
-            }
 
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                this.UseSkillW();
-
-            }
-
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                this.UseSkillE();
-
-            }
-
-            if (Input.GetMouseButtonDown(0) && playerStage == PlayerStage.PREPARINGATTACK && this.stamina >= attackCost)
-            {
-                ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-                if (Physics.Raycast(ray, out hit))
+                if (Input.GetKeyDown(KeyCode.CapsLock))
                 {
-                    if (hit.transform.CompareTag("Player"))
+                    this.playerStage = PlayerStage.PREPARINGATTACK;
+                    battle.SelectTarget(this);
+
+                }
+
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    this.UseSkillQ();
+
+                }
+
+                if (Input.GetKeyDown(KeyCode.W))
+                {
+                    this.UseSkillW();
+
+                }
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    this.UseSkillE();
+
+                }
+
+                if (Input.GetMouseButtonDown(0) && playerStage == PlayerStage.PREPARINGATTACK && this.stamina >= attackCost)
+                {
+                    ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                    if (Physics.Raycast(ray, out hit))
                     {
-                        GameObject go = GameObject.Find(hit.collider.gameObject.name);
-                        Player player = go.GetComponent<Player>();
-
-                        if (player.playerStage == PlayerStage.TARGETABLE)
+                        if (hit.transform.CompareTag("Player"))
                         {
+                            GameObject go = GameObject.Find(hit.collider.gameObject.name);
+                            Player player = go.GetComponent<Player>();
 
-                            battle.DoDamage(this.phisicalDamage, player);
-                            this.stamina -= attackCost;
+                            if (player.playerStage == PlayerStage.TARGETABLE)
+                            {
+
+                                battle.DoDamage(this.phisicalDamage, player);
+                                this.stamina -= attackCost;
+                            }
+                        }
+
+
+                    }
+                }
+
+
+
+                if (this.playerStage == PlayerStage.PREPARINGATTACK && Input.GetKeyDown(KeyCode.Escape))
+                {
+                    playerStage = PlayerStage.IDLE;
+                    round.SetIdleAllPlayers();
+
+                }
+
+
+
+
+                if (Input.GetMouseButtonDown(0) && playerStage == PlayerStage.IDLE && !this.IsCastingSkill() && this.crowdControl != CrowdControl.ROOTED)
+
+                {
+                    ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    if (Physics.Raycast(ray, out hit))
+                    {
+
+                        if (hit.transform == this.transform)
+                        {
+                            moviment.SetMovableTile(this);
+                            playerStage = PlayerStage.MOVING;
+
+                        }
+
+                    }
+                }
+
+                if (Input.GetMouseButtonDown(0) && playerStage == PlayerStage.MOVING)
+                {
+                    ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                    if (Physics.Raycast(ray, out hit))
+                    {
+
+                        if (hit.transform.Find("movable") != null)
+                        {
+                            moviment.MovePlayer(hit.transform, this);
+                            moviment.RemoveMovableTile();
+                            playerStage = PlayerStage.IDLE;
                         }
                     }
-                    
-                   
                 }
-            }
 
-
-
-            if (this.playerStage == PlayerStage.PREPARINGATTACK && Input.GetKeyDown(KeyCode.Escape))
-            {
-                playerStage = PlayerStage.IDLE;
-                round.SetIdleAllPlayers();
-
-            }
-
-            
-
-
-            if (Input.GetMouseButtonDown(0) && playerStage == PlayerStage.IDLE && !this.IsCastingSkill())
-
-            {
-                ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out hit))
+                if (playerStage == PlayerStage.MOVING && stamina == 0)
                 {
-
-                    if (hit.transform == this.transform)
-                    {
-                        moviment.SetMovableTile(this);
-                        playerStage = PlayerStage.MOVING;
-                            
-                    }
-
+                    playerStage = PlayerStage.IDLE;
                 }
-            }
 
-            if (Input.GetMouseButtonDown(0) && playerStage == PlayerStage.MOVING)
-            {
-                ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-                if (Physics.Raycast(ray, out hit))
+                if (playerStage == PlayerStage.MOVING)
                 {
-
-                    if (hit.transform.Find("movable") != null)
+                    if (Input.GetKeyDown(KeyCode.Escape))
                     {
-                        moviment.MovePlayer(hit.transform, this);
                         moviment.RemoveMovableTile();
                         playerStage = PlayerStage.IDLE;
                     }
                 }
-            }
 
-            if (playerStage == PlayerStage.MOVING && stamina == 0)
+
+               
+                
+
+            }
+            else
+            {
+                print(this.name + " Está confuso e não pode realizar ações.");
+            }
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
                 playerStage = PlayerStage.IDLE;
+                round.finishTurn();
             }
 
-            if (playerStage == PlayerStage.MOVING)
-            {
-                if (Input.GetKeyDown(KeyCode.Escape))
-                {
-                    moviment.RemoveMovableTile();
-                    playerStage = PlayerStage.IDLE;
-                }
-            }
+            //else
+            //{
+            //    this.crowdControl = CrowdControl.NONE;
+            //    round.finishTurn();
+            //    print(this.name + "Esta confuso e não pode jogar");
 
-
-
-            if (Input.GetKeyDown(KeyCode.Tab))
-                {
-                    playerStage = PlayerStage.IDLE;
-                    round.finishTurn();
-                }
+            //}
 
         }
 
@@ -197,6 +220,7 @@ public class Player : MonoBehaviour
 
     }
 
+   
     public virtual void UseSkillQ()
     {
     }

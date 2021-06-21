@@ -20,16 +20,32 @@ public class Battle : MonoBehaviour
 
     public void SelectTarget(Player currentPlayer)
     {
-        Player[] players = FindObjectsOfType<Player>();
 
-        foreach(Player player in players)
+        if (currentPlayer.crowdControl == Player.CrowdControl.TAUNT)
         {
-            if (GameUtils.Distance.IsEnoughDistance(currentPlayer.gameObject, player.gameObject, currentPlayer.GetAttackRangeValue(), true) && currentPlayer != player)
+            if (GameUtils.Distance.IsEnoughDistance(currentPlayer.gameObject, currentPlayer.tauntedTarget.gameObject, currentPlayer.GetAttackRangeValue(), true) && currentPlayer != currentPlayer.tauntedTarget)
+                   {
+                        currentPlayer.tauntedTarget.SetTargable();
+
+                    }
+           
+        }
+
+        else
+        {
+            Player[] players = FindObjectsOfType<Player>();
+
+            foreach (Player player in players)
             {
-                player.SetTargable();
-               
+                if (GameUtils.Distance.IsEnoughDistance(currentPlayer.gameObject, player.gameObject, currentPlayer.GetAttackRangeValue(), true) && currentPlayer != player)
+                {
+                    player.SetTargable();
+
+                }
             }
         }
+
+       
 
     }
 
