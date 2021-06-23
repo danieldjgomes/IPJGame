@@ -8,7 +8,7 @@ public class UIController : MonoBehaviour
     public Text playerName;
     public Text playerStamina;
     public Text playersHealth;
-    //
+    
     public Round round;
    
 
