@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+    public enum TileState
+    {
+        IDLE,INUSE
+    }
+    public TileState tileState;
     public Material selectedMaterial;
     public Material defaultMaterial;
     public Material matAtlantica;
     public Material floresAmaz;
     public Material caatinga;
     public Material pantanal;
-    public int weight;
+    public float weight;
     public TextMesh text;
     public string biome;
     public bool inUse;
     System.Random rnd = new System.Random();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +37,10 @@ public class Tile : MonoBehaviour
     void Update()
     {
         this.text.text = this.weight.ToString();
-        
+        SetStateByPlayer();
+
+
+
         if (this.biome == "matAtlantica")
         {
             transform.GetComponent<Renderer>().material = matAtlantica;
@@ -56,6 +65,23 @@ public class Tile : MonoBehaviour
 
 
     }
+
+
+    private void SetStateByPlayer()
+    {
+        Vector3 up = transform.TransformDirection(Vector3.up);
+
+        if (Physics.Raycast(transform.position, up, 3))
+        {
+            this.tileState = TileState.INUSE;
+        }
+        else
+        {
+            this.tileState = TileState.IDLE;
+        }
+
+    }
+
 
     string randomBiome()
     {
@@ -88,24 +114,6 @@ public class Tile : MonoBehaviour
         
     }
 
-   
-    //public void setInUse()
-    //{
-    //    GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-
-
-    //    foreach (GameObject player in players)
-    //    {
-    //        if (this.transform.position.x == player.transform.position.x && (this.transform.position.z == player.transform.position.z))
-    //            {
-    //            this.inUse = true;
-               
-    //        }
-
-           
-
-    //    }   
-    //}
 
     public void setMaterialSelected(Component go)
     {

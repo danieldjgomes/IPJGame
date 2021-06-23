@@ -64,16 +64,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\QuickOutline\Scripts\Outline.cs" />
-    <Compile Include="Assets\Scripts\CameraController.cs" />
-    <Compile Include="Assets\Scripts\GridGuide.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
-    <Compile Include="Assets\Scripts\Round.cs" />
-    <Compile Include="Assets\Scripts\Tile.cs" />
-    <Compile Include="Assets\Scripts\UIController.cs" />
-    <None Include="Assets\QuickOutline\Resources\Shaders\OutlineMask.shader" />
-    <None Include="Assets\QuickOutline\Readme.txt" />
-    <None Include="Assets\QuickOutline\Resources\Shaders\OutlineFill.shader" />
+    <Compile Include="Assets\Resources\QuickOutline\Scripts\Outline.cs" />
+    <Compile Include="Assets\Resources\Scripts\AttackMode.cs" />
+    <Compile Include="Assets\Resources\Scripts\Battle.cs" />
+    <Compile Include="Assets\Resources\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Resources\Scripts\Champions\Dilma.cs" />
+    <Compile Include="Assets\Resources\Scripts\Champions\MamaeFalei.cs" />
+    <Compile Include="Assets\Resources\Scripts\Champions\Temer.cs" />
+    <Compile Include="Assets\Resources\Scripts\EventManager.cs" />
+    <Compile Include="Assets\Resources\Scripts\FloatingText.cs" />
+    <Compile Include="Assets\Resources\Scripts\GameUtils.cs" />
+    <Compile Include="Assets\Resources\Scripts\GridGuide.cs" />
+    <Compile Include="Assets\Resources\Scripts\Moviment.cs" />
+    <Compile Include="Assets\Resources\Scripts\Obstacle.cs" />
+    <Compile Include="Assets\Resources\Scripts\Obstacles\AirBag.cs" />
+    <Compile Include="Assets\Resources\Scripts\Player.cs" />
+    <Compile Include="Assets\Resources\Scripts\Round.cs" />
+    <Compile Include="Assets\Resources\Scripts\Tile.cs" />
+    <Compile Include="Assets\Resources\Scripts\UIController.cs" />
+    <None Include="Assets\Resources\QuickOutline\Resources\Shaders\OutlineMask.shader" />
+    <None Include="Assets\Resources\QuickOutline\Readme.txt" />
+    <None Include="Assets\Resources\QuickOutline\Resources\Shaders\OutlineFill.shader" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.27f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
