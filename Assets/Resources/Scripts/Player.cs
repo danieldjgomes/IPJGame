@@ -50,10 +50,6 @@ public class Player : MonoBehaviour
     public AttackRange attackRange;
 
 
-    private void OnEnable()
-    {
-        EventManager.E
-    }
 
     // Start is called before the first frame update
     void Start()
