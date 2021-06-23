@@ -6,6 +6,7 @@ public class MamaeFalei : Player
 {
 
     bool waitForNextFrame = false;
+    
 
 
     private void LateUpdate()
@@ -43,6 +44,7 @@ public class MamaeFalei : Player
                     if (player)
                     {
                         player.crowdControl = CrowdControl.TAUNT;
+                        player.tauntCount += 2;
                         player.tauntedTarget = this;
                         this.playerStage = PlayerStage.IDLE;
                         this.stamina -= 5;
@@ -69,7 +71,7 @@ public class MamaeFalei : Player
         foreach (Player player in players)
         {
             player.crowdControl = CrowdControl.CONFUSE;
-
+            player.confuseCount = 1;
         }
     }
 

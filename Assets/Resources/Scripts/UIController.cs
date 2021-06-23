@@ -16,7 +16,7 @@ public class UIController : MonoBehaviour
    private static GameObject canvas;
 
 
-    // Update is called once per frame]
+    // Update is called once per frame
 
     private static void Initialize()
     {
@@ -56,7 +56,7 @@ public class UIController : MonoBehaviour
     public static void ShowDamagePopUp(string damage, Transform location) {
 
         FloatingText instance = Instantiate(floatingText);
-        Vector2 screenPosition = Camera.main.WorldToScreenPoint(new Vector3(location.position.x, location.position.y+1.0f,location.position.z));
+        Vector2 screenPosition = Camera.main.WorldToScreenPoint(new Vector3(location.position.x, location.position.y+ 1.0f ,location.position.z));
         instance.transform.SetParent(canvas.transform, false);
         instance.transform.position = screenPosition;
         instance.SetText(damage);
@@ -75,6 +75,7 @@ public class UIController : MonoBehaviour
             player.outline.OutlineWidth = 5f;
             player.outline.OutlineColor = Color.white;
         }
+
         if (player.playerStage == Player.PlayerStage.MOVING)
         {
             player.outline.OutlineWidth = 5f;

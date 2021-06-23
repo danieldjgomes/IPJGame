@@ -71,6 +71,7 @@
     <Compile Include="Assets\Resources\Scripts\Champions\Dilma.cs" />
     <Compile Include="Assets\Resources\Scripts\Champions\MamaeFalei.cs" />
     <Compile Include="Assets\Resources\Scripts\Champions\Temer.cs" />
+    <Compile Include="Assets\Resources\Scripts\EventManager.cs" />
     <Compile Include="Assets\Resources\Scripts\FloatingText.cs" />
     <Compile Include="Assets\Resources\Scripts\GameUtils.cs" />
     <Compile Include="Assets\Resources\Scripts\GridGuide.cs" />

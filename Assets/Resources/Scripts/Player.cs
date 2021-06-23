@@ -17,9 +17,6 @@ public class Player : MonoBehaviour
         NONE, TAUNT, ROOTED, CONFUSE
     }
 
-   
-
-
     public enum PlayerStage
     {
         IDLE, MOVING, PREPARINGATTACK, TARGETABLE, CASTINGQ, CASTINGW, CASTINGE
@@ -33,7 +30,9 @@ public class Player : MonoBehaviour
     public int phisicalDamage;
     public int defense;
     public int attackCost;
-  
+    public int tauntCount;
+    public int confuseCount;
+    public int rootCount;
 
     public Tile tile;
     public PlayerStage playerStage;
@@ -49,7 +48,13 @@ public class Player : MonoBehaviour
     public Outline outline;
     public Battle battle;
     public AttackRange attackRange;
- 
+
+
+    private void OnEnable()
+    {
+        EventManager.E
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -206,13 +211,7 @@ public class Player : MonoBehaviour
                 round.finishTurn();
             }
 
-            //else
-            //{
-            //    this.crowdControl = CrowdControl.NONE;
-            //    round.finishTurn();
-            //    print(this.name + "Esta confuso e não pode jogar");
-
-            //}
+           
 
         }
 
