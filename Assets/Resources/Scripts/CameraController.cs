@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
 {
     public float cameraSpeed;
     public GameObject objects;
-    public Camera camera;
+    
 
     // Start is called before the first frame update
     void Start()
