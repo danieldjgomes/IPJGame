@@ -68,9 +68,6 @@
     <Compile Include="Assets\Resources\Scripts\AttackMode.cs" />
     <Compile Include="Assets\Resources\Scripts\Battle.cs" />
     <Compile Include="Assets\Resources\Scripts\CameraController.cs" />
-    <Compile Include="Assets\Resources\Scripts\Champions\Dilma.cs" />
-    <Compile Include="Assets\Resources\Scripts\Champions\MamaeFalei.cs" />
-    <Compile Include="Assets\Resources\Scripts\Champions\Temer.cs" />
     <Compile Include="Assets\Resources\Scripts\EventManager.cs" />
     <Compile Include="Assets\Resources\Scripts\FloatingText.cs" />
     <Compile Include="Assets\Resources\Scripts\GameUtils.cs" />
@@ -78,6 +75,9 @@
     <Compile Include="Assets\Resources\Scripts\Moviment.cs" />
     <Compile Include="Assets\Resources\Scripts\Obstacle.cs" />
     <Compile Include="Assets\Resources\Scripts\Obstacles\AirBag.cs" />
+    <Compile Include="Assets\Resources\Scripts\Obstacles\Champions\Dilma.cs" />
+    <Compile Include="Assets\Resources\Scripts\Obstacles\Champions\MamaeFalei.cs" />
+    <Compile Include="Assets\Resources\Scripts\Obstacles\Champions\Temer.cs" />
     <Compile Include="Assets\Resources\Scripts\Player.cs" />
     <Compile Include="Assets\Resources\Scripts\Round.cs" />
     <Compile Include="Assets\Resources\Scripts\Tile.cs" />
