@@ -41,6 +41,8 @@ public class UIController : MonoBehaviour
                 playerStamina.text = player.stamina + "/" + player.MaxStamina;
             }
 
+            this.SetOutLineColor(player);
+
             playersList += string.Format("{0}: {1}/{2} \n", player.name, player.health, player.maxHealth);
 
             
@@ -65,7 +67,7 @@ public class UIController : MonoBehaviour
 
     public void SetOutLineColor(Player player)
     {
-        if (player != round.getActualPlayer() && player.playerStage == Player.PlayerStage.IDLE)
+        if (player.gameObject != round.getActualPlayer() && player.playerStage == Player.PlayerStage.IDLE)
         {
             player.outline.OutlineWidth = 0f;
         }
@@ -78,6 +80,7 @@ public class UIController : MonoBehaviour
 
         if (player.playerStage == Player.PlayerStage.MOVING)
         {
+            //print(player.name + " : " + player.outline.OutlineWidth);
             player.outline.OutlineWidth = 5f;
             player.outline.OutlineColor = Color.green;
         }

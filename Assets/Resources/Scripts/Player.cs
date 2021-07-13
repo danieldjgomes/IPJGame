@@ -6,7 +6,6 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-
     public enum AttackRange
     {
         MELEE, RANGED
@@ -61,8 +60,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         limitStamina();
-        ui.SetOutLineColor(this);
+        //ui.SetOutLineColor(this);
 
         if (this.health <= 0)
         {

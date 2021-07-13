@@ -9,6 +9,11 @@ public class Dilma : Player
     public int WCounter = 3;
     public int QCounter = 1;
 
+
+    private void Start()
+    {
+        this.outline.OutlineWidth = 5;
+    }
     private void LateUpdate()
     {
         
@@ -17,6 +22,8 @@ public class Dilma : Player
         waitForNextFrame = false;
 
     }
+
+     
 
     private void CastingWTrigger()
     {

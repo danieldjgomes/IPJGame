@@ -233,6 +233,9 @@ MonoBehaviour:
   phisicalDamage: 10
   defense: 20
   attackCost: 2
+  tauntCount: 0
+  confuseCount: 0
+  rootCount: 0
   tile: {fileID: 4666510455317779612, guid: 1b9cd5fa0f163ae45b45df62a3f7cb86, type: 3}
   playerStage: 0
   crowdControl: 0
@@ -240,9 +243,21 @@ MonoBehaviour:
   round: {fileID: 725829460}
   moviment: {fileID: 621532359}
   ui: {fileID: 653016655}
-  outline: {fileID: 653016656}
+  outline: {fileID: 59894823}
   battle: {fileID: 75175559}
   attackRange: 0
+--- !u!114 &59894823 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 123243450594020935, guid: edb94d38843e1d04aa5307e9ba22077a,
+    type: 3}
+  m_PrefabInstance: {fileID: 869400537}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59894820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &75175558
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,6 +307,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8986800127174045853}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &534033012 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 123243450594020935, guid: edb94d38843e1d04aa5307e9ba22077a,
+    type: 3}
+  m_PrefabInstance: {fileID: 8986800127174045853}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &621532358
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,6 +693,9 @@ MonoBehaviour:
   phisicalDamage: 10
   defense: 20
   attackCost: 3
+  tauntCount: 0
+  confuseCount: 0
+  rootCount: 0
   tile: {fileID: 4666510455317779612, guid: 1b9cd5fa0f163ae45b45df62a3f7cb86, type: 3}
   playerStage: 0
   crowdControl: 0
@@ -786,6 +816,116 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1001 &719417695
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1859442192}
+    m_Modifications:
+    - target: {fileID: 2720876577962317530, guid: edb94d38843e1d04aa5307e9ba22077a,
+        type: 3}
+      propertyPath: m_Name
+      value: Lula
+      objectReference: {fileID: 0}
+    - target: {fileID: 2720876577962317530, guid: edb94d38843e1d04aa5307e9ba22077a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104993288097479820, guid: edb94d38843e1d04aa5307e9ba22077a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3ce87d1e8f8cfb64d88c5482ec45ec13, type: 2}
+    - target: {fileID: 4964549078586539649, guid: edb94d38843e1d04aa5307e9ba22077a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4964549078586539649, guid: edb94d38843e1d04aa5307e9ba22077a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4964549078586539649, guid: edb94d38843e1d04aa5307e9ba22077a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4964549078586539649, guid: edb94d38843e1d04aa5307e9ba22077a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4964549078586539649, guid: edb94d38843e1d04aa5307e9ba22077a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4964549078586539649, guid: edb94d38843e1d04aa5307e9ba22077a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4964549078586539649, guid: edb94d38843e1d04aa5307e9ba22077a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4964549078586539649, guid: edb94d38843e1d04aa5307e9ba22077a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4964549078586539649, guid: edb94d38843e1d04aa5307e9ba22077a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4964549078586539649, guid: edb94d38843e1d04aa5307e9ba22077a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4964549078586539649, guid: edb94d38843e1d04aa5307e9ba22077a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366602134614244531, guid: edb94d38843e1d04aa5307e9ba22077a,
+        type: 3}
+      propertyPath: ui
+      value: 
+      objectReference: {fileID: 653016655}
+    - target: {fileID: 6366602134614244531, guid: edb94d38843e1d04aa5307e9ba22077a,
+        type: 3}
+      propertyPath: round
+      value: 
+      objectReference: {fileID: 725829460}
+    - target: {fileID: 6366602134614244531, guid: edb94d38843e1d04aa5307e9ba22077a,
+        type: 3}
+      propertyPath: attack
+      value: 
+      objectReference: {fileID: 75175559}
+    - target: {fileID: 6366602134614244531, guid: edb94d38843e1d04aa5307e9ba22077a,
+        type: 3}
+      propertyPath: battle
+      value: 
+      objectReference: {fileID: 75175559}
+    - target: {fileID: 6366602134614244531, guid: edb94d38843e1d04aa5307e9ba22077a,
+        type: 3}
+      propertyPath: outline
+      value: 
+      objectReference: {fileID: 653016656}
+    - target: {fileID: 6366602134614244531, guid: edb94d38843e1d04aa5307e9ba22077a,
+        type: 3}
+      propertyPath: moviment
+      value: 
+      objectReference: {fileID: 621532359}
+    m_RemovedComponents:
+    - {fileID: 6366602134614244531, guid: edb94d38843e1d04aa5307e9ba22077a, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: edb94d38843e1d04aa5307e9ba22077a, type: 3}
 --- !u!1 &725829459
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,6 +970,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &831495523 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2720876577962317530, guid: edb94d38843e1d04aa5307e9ba22077a,
+    type: 3}
+  m_PrefabInstance: {fileID: 719417695}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &831495524 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4964549078586539649, guid: edb94d38843e1d04aa5307e9ba22077a,
+    type: 3}
+  m_PrefabInstance: {fileID: 719417695}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &831495525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831495523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 718d7f636a2557f48b10354302e5e89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stamina: 10
+  MaxStamina: 20
+  speed: 3
+  health: 500
+  maxHealth: 600
+  phisicalDamage: 10
+  defense: 10
+  attackCost: 1
+  tauntCount: 0
+  confuseCount: 0
+  rootCount: 0
+  tile: {fileID: 4666510455317779612, guid: 1b9cd5fa0f163ae45b45df62a3f7cb86, type: 3}
+  playerStage: 0
+  crowdControl: 0
+  tauntedTarget: {fileID: 0}
+  round: {fileID: 725829460}
+  moviment: {fileID: 621532359}
+  ui: {fileID: 653016655}
+  outline: {fileID: 831495526}
+  battle: {fileID: 75175559}
+  attackRange: 1
+--- !u!114 &831495526 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 123243450594020935, guid: edb94d38843e1d04aa5307e9ba22077a,
+    type: 3}
+  m_PrefabInstance: {fileID: 719417695}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831495523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &864873326 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1268690475047583389, guid: 3e5088df72ef2144dbe0140bc8c5eaa7,
@@ -1163,6 +1360,9 @@ MonoBehaviour:
   phisicalDamage: 12
   defense: 20
   attackCost: 3
+  tauntCount: 0
+  confuseCount: 0
+  rootCount: 0
   tile: {fileID: 4666510455317779612, guid: 1b9cd5fa0f163ae45b45df62a3f7cb86, type: 3}
   playerStage: 0
   crowdControl: 0
@@ -1346,9 +1546,22 @@ Transform:
   - {fileID: 479854693}
   - {fileID: 864873326}
   - {fileID: 59894821}
+  - {fileID: 831495524}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1950808818 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1268690475047583388, guid: 3e5088df72ef2144dbe0140bc8c5eaa7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1268690474737931763}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1993710937
 GameObject:
   m_ObjectHideFlags: 0
@@ -1390,6 +1603,9 @@ MonoBehaviour:
   phisicalDamage: 12
   defense: 20
   attackCost: 3
+  tauntCount: 0
+  confuseCount: 0
+  rootCount: 0
   tile: {fileID: 4666510455317779612, guid: 1b9cd5fa0f163ae45b45df62a3f7cb86, type: 3}
   playerStage: 0
   crowdControl: 0
@@ -1578,7 +1794,7 @@ PrefabInstance:
         type: 3}
       propertyPath: outline
       value: 
-      objectReference: {fileID: 653016656}
+      objectReference: {fileID: 1950808818}
     - target: {fileID: 2397509726638449699, guid: 3e5088df72ef2144dbe0140bc8c5eaa7,
         type: 3}
       propertyPath: moviment
@@ -1682,7 +1898,7 @@ PrefabInstance:
         type: 3}
       propertyPath: outline
       value: 
-      objectReference: {fileID: 653016656}
+      objectReference: {fileID: 534033012}
     - target: {fileID: 6366602134614244531, guid: edb94d38843e1d04aa5307e9ba22077a,
         type: 3}
       propertyPath: moviment
