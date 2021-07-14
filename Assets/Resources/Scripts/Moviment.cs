@@ -70,7 +70,7 @@ public class Moviment : MonoBehaviour
             if (tc.transform.position.x != hit.transform.position.x && tc.transform.position.z != hit.transform.position.z)
             {
                 tc.weight = 
-                    //Mathf.Floor(
+                    Mathf.Floor(
                  Vector3.Distance(
                  new Vector3(
                      hit.transform.position.x,
@@ -78,7 +78,7 @@ public class Moviment : MonoBehaviour
                  new Vector3(
                      tc.transform.position.x,
                      tc.transform.position.z))
-                    //)
+                    )
                     ;
             }
 

@@ -12,6 +12,7 @@ public class Round : MonoBehaviour
 
 
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,13 +40,63 @@ public class Round : MonoBehaviour
         if (waitForNextFrame)
             return;
 
-        print("Turno de : " + chars[0].name + " Finalizado. Indo para turno de: " + chars[1].name);
+        Player player = chars[0].GetComponent<Player>();
+        SetCounterCC(player);
         RestureStamina(chars[0]);
         chars = firstPlayerToLast(chars);
 
 
+        
         waitForNextFrame = true;
     }
+
+    public void SetCounterCC(Player player)
+    {
+        if (player && player.crowdControl == Player.CrowdControl.CONFUSE)
+        {
+            if (player.confuseCount > 0)
+            {
+                player.confuseCount -= 1;
+            }
+            if (player.confuseCount <= 0)
+            {
+                player.confuseCount = 0;
+                player.crowdControl = Player.CrowdControl.NONE;
+            }
+
+        }
+
+        if (player && player.crowdControl == Player.CrowdControl.TAUNT)
+        {
+            if (player.tauntCount > 0)
+            {
+                player.tauntCount -= 1;
+            }
+            if (player.tauntCount <= 0)
+            {
+                player.tauntCount = 0;
+                player.crowdControl = Player.CrowdControl.NONE;
+            }
+
+        }
+
+        if (player && player.crowdControl == Player.CrowdControl.ROOTED)
+        {
+            if (player.rootCount > 0)
+            {
+                player.rootCount -= 1;
+            }
+            if (player.rootCount <= 0)
+            {
+                player.rootCount = 0;
+                player.crowdControl = Player.CrowdControl.NONE;
+            }
+
+        }
+
+    }
+
+
 
     public void RestureStamina(GameObject character)
     {
