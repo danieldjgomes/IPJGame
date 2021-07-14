@@ -149,7 +149,8 @@ public class Player : MonoBehaviour
 
                 {
                     ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    if (Physics.Raycast(ray, out hit))
+                    int layerMask = 1 << LayerMask.NameToLayer("Player");
+                    if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
                     {
 
                         if (hit.transform == this.transform)
@@ -165,8 +166,8 @@ public class Player : MonoBehaviour
                 if (Input.GetMouseButtonDown(0) && playerStage == PlayerStage.MOVING)
                 {
                     ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-                    if (Physics.Raycast(ray, out hit))
+                    
+                    if (Physics.Raycast(ray, out hit, Mathf.Infinity))
                     {
 
                         if (hit.transform.Find("movable") != null)
