@@ -68,6 +68,7 @@
     <Compile Include="Assets\Resources\Scripts\AttackMode.cs" />
     <Compile Include="Assets\Resources\Scripts\Battle.cs" />
     <Compile Include="Assets\Resources\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Resources\Scripts\Champions\Bolsonaro.cs" />
     <Compile Include="Assets\Resources\Scripts\Champions\Dilma.cs" />
     <Compile Include="Assets\Resources\Scripts\Champions\Lula.cs" />
     <Compile Include="Assets\Resources\Scripts\Champions\MamaeFalei.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Assets\Resources\Scripts\Moviment.cs" />
     <Compile Include="Assets\Resources\Scripts\Obstacle.cs" />
     <Compile Include="Assets\Resources\Scripts\Obstacles\AirBag.cs" />
+    <Compile Include="Assets\Resources\Scripts\Obstacles\Bull.cs" />
     <Compile Include="Assets\Resources\Scripts\Obstacles\Triplex.cs" />
     <Compile Include="Assets\Resources\Scripts\Player.cs" />
     <Compile Include="Assets\Resources\Scripts\Round.cs" />

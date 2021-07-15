@@ -23,7 +23,7 @@ public class Temer : Player
         {
             if (GameUtils.Distance.IsEnoughDistance(this.gameObject, player.gameObject, 4 * tile.transform.localScale.x, true) && player != this)
             {
-                battle.DoDamage(3 * phisicalDamage, player);
+                battle.DoDamage(3 * phisicalDamage, player, Battle.AttackType.SKILL);
             }
             
         }
@@ -54,7 +54,7 @@ public class Temer : Player
 
                     if (player)
                     {
-                        battle.DoDamage(5 * this.phisicalDamage, player);
+                        battle.DoDamage(5 * this.phisicalDamage, player, Battle.AttackType.SKILL);
                         battle.DoHeal(3* this.phisicalDamage, this);
                         this.playerStage = PlayerStage.IDLE;
                         this.stamina -= 5;

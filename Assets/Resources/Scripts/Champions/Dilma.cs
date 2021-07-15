@@ -111,7 +111,7 @@ public class Dilma : Player
                        
                         if (player)
                         {
-                            battle.DoDamage(5 * this.phisicalDamage, player);
+                            battle.DoDamage(5 * this.phisicalDamage, player, Battle.AttackType.SKILL);
                             this.playerStage = PlayerStage.IDLE;
                     }
 
@@ -129,31 +129,9 @@ public class Dilma : Player
         }
     }
 
-    private bool HasSomeHere(Tile tile, AirBag[] airBags)
-    {
-       foreach(AirBag airBag in airBags)
-        {
-            if (tile.transform.position.x == airBag.transform.position.x && tile.transform.position.z == airBag.transform.position.z)
-            {
-                return true;
-            }
-        }
-        return false;
+  
 
-    }
-
-    private bool HasSomePlayerHere(RaycastHit ray, Player[] players)
-    {
-        foreach (Player player in players)
-        {
-            if (tile.transform.position.x == player.transform.position.x && tile.transform.position.z == player.transform.position.z)
-            {
-                return true;
-            }
-        }
-        return false;
-
-    }
+    
 
 
     public override void UseSkillW()
@@ -172,7 +150,7 @@ public class Dilma : Player
 
         foreach(Player player in players)
         {
-            battle.DoDamage(3 * phisicalDamage, player);
+            battle.DoDamage(3 * phisicalDamage, player, Battle.AttackType.SKILL);
         }
     }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -13,7 +14,7 @@ public class Player : MonoBehaviour
 
     public enum CrowdControl
     {
-        NONE, TAUNT, ROOTED, CONFUSE
+        NONE, TAUNT, ROOTED, CONFUSE, ZAPEFFECT
     }
 
     public enum PlayerStage
@@ -32,6 +33,7 @@ public class Player : MonoBehaviour
     public int tauntCount;
     public int confuseCount;
     public int rootCount;
+    public int zapCount;
 
     public Tile tile;
     public PlayerStage playerStage;
@@ -48,6 +50,7 @@ public class Player : MonoBehaviour
     public Battle battle;
     public AttackRange attackRange;
 
+    System.Random rnd = new System.Random();
     //
 
     // Start is called before the first frame update
@@ -124,7 +127,21 @@ public class Player : MonoBehaviour
                             if (player.playerStage == PlayerStage.TARGETABLE)
                             {
 
-                                battle.DoDamage(this.phisicalDamage, player);
+                                if (this.attackRange == AttackRange.MELEE)
+                                {
+                                    battle.DoDamage(this.phisicalDamage, player, Battle.AttackType.MELEE);
+                                    //print("Attack Melee");
+                                }
+
+                                else
+                                {
+                                    if (this.attackRange == AttackRange.RANGED)
+                                    {
+                                        battle.DoDamage(this.phisicalDamage, player, Battle.AttackType.RANGED);
+                                        //print("Attack Ranged");
+                                    }
+                                }
+
                                 this.stamina -= attackCost;
                             }
                         }
@@ -172,7 +189,29 @@ public class Player : MonoBehaviour
 
                         if (hit.transform.Find("movable") != null)
                         {
-                            moviment.MovePlayer(hit.transform, this);
+                            if (this.crowdControl == CrowdControl.ZAPEFFECT)
+                            {
+                                Tile[] tiles = FindObjectsOfType<Tile>();
+                                List<Tile> movableTiles = new List<Tile>();
+                                foreach(Tile tile in tiles)
+                                {
+                                    if (tile.transform.Find("movable") != null)
+                                    {
+                                        movableTiles.Add(tile);
+                                    }
+                                   
+                                }
+                                int size = movableTiles.Count;
+                                int r = rnd.Next(0, size);
+                                Transform param = movableTiles[r].transform;
+                                moviment.MovePlayer(param, this);
+                            }
+
+                            else
+                            {
+                                moviment.MovePlayer(hit.transform, this);
+                                
+                            }
                             moviment.RemoveMovableTile();
                             playerStage = PlayerStage.IDLE;
                         }
@@ -262,8 +301,34 @@ public class Player : MonoBehaviour
         }
 
         return false;
-    } 
+    }
 
+
+    public bool HasSomePlayerHere(RaycastHit ray, Player[] players)
+    {
+        foreach (Player player in players)
+        {
+            if (tile.transform.position.x == player.transform.position.x && tile.transform.position.z == player.transform.position.z)
+            {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    public bool HasSomeHere(Tile tile, Obstacle[] obstacles)
+    {
+        foreach (Obstacle obstacle in obstacles)
+        {
+            if (tile.transform.position.x == obstacle.transform.position.x && tile.transform.position.z == obstacle.transform.position.z)
+            {
+                return true;
+            }
+        }
+        return false;
+
+    }
 
 
 

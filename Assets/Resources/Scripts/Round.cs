@@ -94,6 +94,20 @@ public class Round : MonoBehaviour
 
         }
 
+        if (player && player.crowdControl == Player.CrowdControl.ZAPEFFECT)
+        {
+            if (player.zapCount > 0)
+            {
+                player.zapCount -= 1;
+            }
+            if (player.zapCount <= 0)
+            {
+                player.zapCount = 0;
+                player.crowdControl = Player.CrowdControl.NONE;
+            }
+
+        }
+
     }
 
 
