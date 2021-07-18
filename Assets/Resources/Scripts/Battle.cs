@@ -62,7 +62,7 @@ public class Battle : MonoBehaviour
         //Bolsonaro
         if (targetPlayer is Bolsonaro && attackType == AttackType.MELEE)
         {
-            print("Melee Bolsonaro");
+            //print("Melee Bolsonaro");
             appliedDamage = Mathf.FloorToInt(damage * (100f / (100 + targetPlayer.defense)) * 0.8f);
             targetPlayer.health -= appliedDamage;
             UIController.ShowDamagePopUp(appliedDamage.ToString(), targetPlayer.transform);
@@ -70,7 +70,7 @@ public class Battle : MonoBehaviour
         }
         else
         {
-            print("Dano Comum");
+            //print("Dano Comum");
             //Player normal
             appliedDamage = Mathf.FloorToInt(damage * (100f / (100 + targetPlayer.defense)));
             targetPlayer.health -= appliedDamage;
@@ -78,13 +78,13 @@ public class Battle : MonoBehaviour
         }
 
 
-        print(targetPlayer.health);
+        //print(targetPlayer.health);
     }
 
     public void DoHeal(int value, Player targetPlayer)
     {
         targetPlayer.health += value;
-        print(targetPlayer.health);
+        //print(targetPlayer.health);
     }
 
     public void SetCrowdControl(Player.CrowdControl cc, Player player)
