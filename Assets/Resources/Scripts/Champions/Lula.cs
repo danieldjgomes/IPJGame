@@ -20,6 +20,9 @@ public class Lula : Player
     // Start is called before the first frame update
     void Start()
     {
+        this.Q = new Basic(2);
+        this.W = new Basic(3);
+        this.E = new Ultimate(5);
         this.outline.OutlineWidth = 5;
        
     }

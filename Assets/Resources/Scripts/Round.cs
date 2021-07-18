@@ -43,11 +43,33 @@ public class Round : MonoBehaviour
         Player player = chars[0].GetComponent<Player>();
         SetCounterCC(player);
         RestureStamina(chars[0]);
+        RunCountSkills();
         chars = firstPlayerToLast(chars);
+        
 
 
         
         waitForNextFrame = true;
+    }
+
+    public void RunCountSkills()
+    {
+        Aecio aecio = chars[0].transform.GetComponent<Aecio>();
+        Player player = chars[0].transform.GetComponent<Player>();
+        Prepare[] prepares = FindObjectsOfType<Prepare>();
+        //print(chars[1].transform.name);
+        //print(prepares.Length);
+        if (aecio != null)
+        {
+            foreach(Prepare prepare in prepares)
+            {
+                print(prepare.transform.position.x);
+                Destroy(prepare.gameObject);
+            }
+        }
+        player.AddCooldown();
+
+        
     }
 
     public void SetCounterCC(Player player)
@@ -89,20 +111,6 @@ public class Round : MonoBehaviour
             if (player.rootCount <= 0)
             {
                 player.rootCount = 0;
-                player.crowdControl = Player.CrowdControl.NONE;
-            }
-
-        }
-
-        if (player && player.crowdControl == Player.CrowdControl.ZAPEFFECT)
-        {
-            if (player.zapCount > 0)
-            {
-                player.zapCount -= 1;
-            }
-            if (player.zapCount <= 0)
-            {
-                player.zapCount = 0;
                 player.crowdControl = Player.CrowdControl.NONE;
             }
 

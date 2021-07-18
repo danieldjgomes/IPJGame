@@ -50,6 +50,10 @@ public class Player : MonoBehaviour
     public Battle battle;
     public AttackRange attackRange;
 
+    protected Basic Q = null;
+    protected Basic W = null;
+    protected Ultimate E = null;
+
     System.Random rnd = new System.Random();
     //
 
@@ -205,6 +209,8 @@ public class Player : MonoBehaviour
                                 int r = rnd.Next(0, size);
                                 Transform param = movableTiles[r].transform;
                                 moviment.MovePlayer(param, this);
+                                ReduceCountZap(this);
+
                             }
 
                             else
@@ -258,12 +264,25 @@ public class Player : MonoBehaviour
    
     public virtual void UseSkillQ()
     {
+        if (this.IsCostEnough(Q))
+        {
+            this.playerStage = PlayerStage.CASTINGQ;
+        }
     }
     public virtual void UseSkillW()
     {
+        if (this.IsCostEnough(W))
+        {
+            this.playerStage = PlayerStage.CASTINGW;
+        }
     }
     public virtual void UseSkillE()
     {
+        
+        if (this.IsCostEnough(E))
+        {
+            this.playerStage = PlayerStage.CASTINGE;
+        }
     }
 
 
@@ -329,6 +348,64 @@ public class Player : MonoBehaviour
         return false;
 
     }
+
+    public void ReduceCountZap(Player player)
+    {
+        if (player && player.crowdControl == Player.CrowdControl.ZAPEFFECT)
+        {
+            if (player.zapCount > 0)
+            {
+                player.zapCount -= 1;
+            }
+            if (player.zapCount <= 0 || player.stamina == 0)
+            {
+                player.zapCount = 0;
+                player.crowdControl = Player.CrowdControl.NONE;
+            }
+
+        }
+    }
+
+    public bool IsCostEnough(Skill skill)
+    {
+        return skill.CostValue == skill.CurrrentValue;
+    }
+
+    public void AddCooldown()
+    {
+        if (this.Q.CurrrentValue < this.Q.CostValue)
+        {
+            this.Q.CurrrentValue += 1;
+        }
+
+        if (this.W.CurrrentValue < this.W.CostValue)
+        {
+            this.W.CurrrentValue += 1;
+        }
+
+        if (this.E.CurrrentValue < this.E.CostValue)
+        {
+            this.E.CurrrentValue += 1;
+        }
+    }
+
+    public Skill getQ()
+    {
+        return this.Q;
+    }
+
+    public Skill getW()
+    {
+        return this.W;
+    }
+
+    public Skill getE()
+    {
+        return this.E;
+    }
+
+
+
 
 
 

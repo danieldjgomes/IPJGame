@@ -17,6 +17,13 @@ public class MamaeFalei : Player
 
     }
 
+    private void Start()
+    {
+        this.Q = new Basic(2);
+        this.W = new Basic(3);
+        this.E = new Ultimate(5);
+    }
+
 
     public override void UseSkillQ()
     {
@@ -43,8 +50,7 @@ public class MamaeFalei : Player
 
                     if (player)
                     {
-                        player.crowdControl = CrowdControl.TAUNT;
-                        player.tauntCount += 2;
+                        battle.SetCrowdControl(CrowdControl.TAUNT, player);
                         player.tauntedTarget = this;
                         this.playerStage = PlayerStage.IDLE;
                         this.stamina -= 5;
@@ -70,8 +76,7 @@ public class MamaeFalei : Player
 
         foreach (Player player in players)
         {
-            player.crowdControl = CrowdControl.CONFUSE;
-            player.confuseCount = 1;
+            battle.SetCrowdControl(CrowdControl.CONFUSE, player);
         }
     }
 

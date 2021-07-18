@@ -15,6 +15,14 @@ public class Temer : Player
         waitForNextFrame = false;
 
     }
+
+    private void Start()
+    {
+        this.Q = new Basic(2);
+        this.W = new Basic(3);
+        this.E = new Ultimate(5);
+    }
+
     public override void UseSkillW()
     {
         Player[] players = FindObjectsOfType<Player>();

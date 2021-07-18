@@ -8,7 +8,7 @@ public class UIController : MonoBehaviour
     public Text playerName;
     public Text playerStamina;
     public Text playersHealth;
-    
+    public Text roundOrder;
     public Round round;
    
 
@@ -32,12 +32,25 @@ public class UIController : MonoBehaviour
     {
         Player[] players = FindObjectsOfType<Player>();
         string playersList = "";
+        string orderList = "Ordem dos personagens: \n";
 
         foreach(Player player in players)
         {
             if (player.name == round.getActualPlayer().name)
             {
-                playerName.text = player.name;
+                Skill q = player.getQ();
+                Skill w = player.getW();
+                Skill e = player.getE();
+
+                string textPlayer = "";
+                textPlayer += player.transform.name + "\n";
+                textPlayer += string.Format("Q: {0}/{1}\n", q.CurrrentValue, q.CostValue);
+                textPlayer += string.Format("W: {0}/{1}\n", w.CurrrentValue, w.CostValue);
+                textPlayer += string.Format("E: {0}/{1}\n", e.CurrrentValue, e.CostValue);
+
+
+                playerName.text = textPlayer;
+                //playerName.text = player.name;
                 playerStamina.text = player.stamina + "/" + player.MaxStamina;
             }
 
@@ -48,6 +61,14 @@ public class UIController : MonoBehaviour
             
         }
         playersHealth.text = playersList;
+
+        foreach(GameObject gameObject in round.chars)
+        {
+            Player pl = gameObject.GetComponent<Player>();
+            
+            orderList += string.Format("{0}: ({1}) \n", pl.transform.name, pl.crowdControl); ; 
+        }
+        roundOrder.text = orderList;
 
        
         

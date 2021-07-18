@@ -87,4 +87,32 @@ public class Battle : MonoBehaviour
         print(targetPlayer.health);
     }
 
+    public void SetCrowdControl(Player.CrowdControl cc, Player player)
+    {
+        if(cc == Player.CrowdControl.TAUNT)
+        {
+            player.crowdControl = Player.CrowdControl.TAUNT;
+            player.tauntCount = 2;
+        }
+
+        if (cc == Player.CrowdControl.CONFUSE)
+        {
+            player.crowdControl = Player.CrowdControl.CONFUSE;
+            player.confuseCount = 1;
+        }
+
+        if (cc == Player.CrowdControl.ROOTED)
+        {
+            player.crowdControl = Player.CrowdControl.ROOTED;
+            player.rootCount = 2;
+        }
+
+        if (cc == Player.CrowdControl.ZAPEFFECT)
+        {
+            player.crowdControl = Player.CrowdControl.ZAPEFFECT;
+            player.zapCount = 3;
+        }
+    }
+  
+
 }

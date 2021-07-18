@@ -9,7 +9,15 @@ public class Bolsonaro : Player
     public int WCounter = 1;
     public int QCounter = 2;
 
-   
+    private void Start()
+    {
+        this.Q = new Basic(2);
+        this.W = new Basic(3);
+        this.E = new Ultimate(5);
+
+
+
+    }
 
     // Update is called once per frame
     void LateUpdate()
@@ -135,8 +143,7 @@ public class Bolsonaro : Player
         {
             if(GameUtils.Distance.IsEnoughDistance(this.gameObject, player.gameObject, 3 * tile.transform.localScale.x, true) && player != this)
             {
-                player.crowdControl = CrowdControl.ZAPEFFECT;
-                player.zapCount = 1;
+                battle.SetCrowdControl(CrowdControl.ZAPEFFECT, player);
             }
         }
     }
