@@ -35,6 +35,8 @@ public class Temer : Player
             }
             
         }
+        this.stamina -= 5;
+        W.ResetCooldown();
     }
 
    
@@ -66,6 +68,7 @@ public class Temer : Player
                         battle.DoHeal(3* this.phisicalDamage, this);
                         this.playerStage = PlayerStage.IDLE;
                         this.stamina -= 5;
+                        Q.ResetCooldown();
                     }
 
 
@@ -84,7 +87,7 @@ public class Temer : Player
 
     public override void UseSkillE()
     {
-        if (this.stamina > 5)
+        if (this.IsCostEnough(E))
         {
             this.speed += 2;
             this.phisicalDamage += 5;
@@ -93,7 +96,9 @@ public class Temer : Player
             {
                 this.attackCost -= 1;
             }
-           
+            this.stamina -= 5;
+            E.ResetCooldown();
+
         }
     }
 

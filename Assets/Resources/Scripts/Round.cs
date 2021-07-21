@@ -54,7 +54,7 @@ public class Round : MonoBehaviour
 
     public void RunCountSkills()
     {
-        Aecio aecio = chars[0].transform.GetComponent<Aecio>();
+        Aecio aecio = chars[1].transform.GetComponent<Aecio>();
         Player player = chars[0].transform.GetComponent<Player>();
         Prepare[] prepares = FindObjectsOfType<Prepare>();
         //print(chars[1].transform.name);
@@ -63,7 +63,7 @@ public class Round : MonoBehaviour
         {
             foreach(Prepare prepare in prepares)
             {
-                print(prepare.transform.position.x);
+                //print(prepare.transform.position.x);
                 Destroy(prepare.gameObject);
             }
         }

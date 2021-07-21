@@ -50,6 +50,7 @@ public class Player : MonoBehaviour
     public Battle battle;
     public AttackRange attackRange;
 
+    public Team team = null;
     protected Basic Q = null;
     protected Basic W = null;
     protected Ultimate E = null;
@@ -61,20 +62,20 @@ public class Player : MonoBehaviour
     void Start()
     {
         playerStage = PlayerStage.IDLE;
-       
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
         limitStamina();
         //ui.SetOutLineColor(this);
 
         if (this.health <= 0)
         {
             this.transform.gameObject.SetActive(false);
-           
+
         }
 
         if (round.getActualPlayer() == this.gameObject && !this.gameObject.activeSelf)
@@ -85,7 +86,7 @@ public class Player : MonoBehaviour
 
 
         if (round.getActualPlayer() == this.gameObject && this.gameObject.activeSelf)
-            {
+        {
 
             if (this.crowdControl != CrowdControl.CONFUSE)
             {
@@ -187,7 +188,7 @@ public class Player : MonoBehaviour
                 if (Input.GetMouseButtonDown(0) && playerStage == PlayerStage.MOVING)
                 {
                     ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    
+
                     if (Physics.Raycast(ray, out hit, Mathf.Infinity))
                     {
 
@@ -197,13 +198,13 @@ public class Player : MonoBehaviour
                             {
                                 Tile[] tiles = FindObjectsOfType<Tile>();
                                 List<Tile> movableTiles = new List<Tile>();
-                                foreach(Tile tile in tiles)
+                                foreach (Tile tile in tiles)
                                 {
                                     if (tile.transform.Find("movable") != null)
                                     {
                                         movableTiles.Add(tile);
                                     }
-                                   
+
                                 }
                                 int size = movableTiles.Count;
                                 int r = rnd.Next(0, size);
@@ -216,7 +217,7 @@ public class Player : MonoBehaviour
                             else
                             {
                                 moviment.MovePlayer(hit.transform, this);
-                                
+
                             }
                             moviment.RemoveMovableTile();
                             playerStage = PlayerStage.IDLE;
@@ -239,8 +240,8 @@ public class Player : MonoBehaviour
                 }
 
 
-               
-                
+
+
 
             }
             else
@@ -253,15 +254,24 @@ public class Player : MonoBehaviour
                 round.finishTurn();
             }
 
-           
+
 
         }
 
-        
+
 
     }
 
-   
+    public Team GetTeam()
+    {
+        return this.team;
+    }
+
+    public void SetTeam(Team team)
+    {
+        this.team = team;
+    }
+
     public virtual void UseSkillQ()
     {
         if (this.IsCostEnough(Q))
@@ -278,7 +288,7 @@ public class Player : MonoBehaviour
     }
     public virtual void UseSkillE()
     {
-        
+
         if (this.IsCostEnough(E))
         {
             this.playerStage = PlayerStage.CASTINGE;
@@ -288,20 +298,21 @@ public class Player : MonoBehaviour
 
     private void limitStamina()
     {
-        if (stamina > MaxStamina){
+        if (stamina > MaxStamina)
+        {
             stamina = MaxStamina;
         }
     }
 
     public void SetTargable()
     {
-             this.playerStage = PlayerStage.TARGETABLE;
+        this.playerStage = PlayerStage.TARGETABLE;
 
     }
 
     public float GetAttackRangeValue()
     {
-        
+
         if (this.attackRange == AttackRange.MELEE)
         {
             return 1.43f * tile.transform.localScale.x;
@@ -402,6 +413,20 @@ public class Player : MonoBehaviour
     public Skill getE()
     {
         return this.E;
+    }
+
+
+    public bool IsMyTeammate(Player player)
+    {
+        if(this.team.name == player.team.name && player)
+        {
+            return true;
+        }
+
+        else
+        {
+            return false;
+        }
     }
 
 

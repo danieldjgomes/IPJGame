@@ -72,6 +72,7 @@ public class Bolsonaro : Player
                         QCounter = 2;
                         this.stamina -= 5;
                         this.playerStage = PlayerStage.IDLE;
+                        Q.ResetCooldown();
                     }
                     waitForNextFrame = true;
 
@@ -118,6 +119,7 @@ public class Bolsonaro : Player
                     WCounter = 1;
                     this.stamina -= 5;
                     this.playerStage = PlayerStage.IDLE;
+                    W.ResetCooldown();
                 }
                 waitForNextFrame = true;
 
@@ -141,11 +143,14 @@ public class Bolsonaro : Player
 
         foreach (Player player in players)
         {
-            if(GameUtils.Distance.IsEnoughDistance(this.gameObject, player.gameObject, 3 * tile.transform.localScale.x, true) && player != this)
+            if(GameUtils.Distance.IsEnoughDistance(this.gameObject, player.gameObject, 10 * tile.transform.localScale.x, true) && player != this && !this.IsMyTeammate(player))
             {
                 battle.SetCrowdControl(CrowdControl.ZAPEFFECT, player);
             }
         }
+        this.stamina -= 5;
+        E.ResetCooldown();
+
     }
 
 

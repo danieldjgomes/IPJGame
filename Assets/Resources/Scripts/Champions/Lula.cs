@@ -64,10 +64,11 @@ public class Lula : Player
                 {
                     Player player = hit.transform.GetComponent<Player>();
 
-                    if (player)
+                    if (player && this.IsMyTeammate(player))
                     {
                         battle.DoHeal(3 * this.phisicalDamage, player);
                         this.playerStage = PlayerStage.IDLE;
+                        Q.ResetCooldown();
                         this.stamina -= 5;
                     }
 
@@ -140,8 +141,8 @@ public class Lula : Player
                     if (WCounter <= 0)
                     {
                         WCounter = 1;
-                        
-
+                        this.stamina -= 5;
+                        W.ResetCooldown();
                         this.playerStage = PlayerStage.IDLE;
                     }
                     waitForNextFrame = true;
@@ -161,8 +162,12 @@ public class Lula : Player
         {
             print(rc.transform.name);
             Player player = rc.transform.GetComponent<Player>();
-            player.crowdControl = CrowdControl.ROOTED;
-            player.rootCount = 1;
+            if (!this.IsMyTeammate(player))
+            {
+                player.crowdControl = CrowdControl.ROOTED;
+                player.rootCount = 1;
+            }
+            
         }
     }
 
@@ -255,6 +260,8 @@ public class Lula : Player
                     obj.transform.SetParent(tile.transform, false);
                 }
             }
+            E.ResetCooldown();
+            this.stamina -= 5;
         }
        
 

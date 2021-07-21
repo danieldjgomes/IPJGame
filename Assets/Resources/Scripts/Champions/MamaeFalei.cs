@@ -48,12 +48,13 @@ public class MamaeFalei : Player
                 {
                     Player player = hit.transform.GetComponent<Player>();
 
-                    if (player)
+                    if (player && !this.IsMyTeammate(player))
                     {
                         battle.SetCrowdControl(CrowdControl.TAUNT, player);
                         player.tauntedTarget = this;
                         this.playerStage = PlayerStage.IDLE;
                         this.stamina -= 5;
+                        Q.ResetCooldown();
                     }
 
 
@@ -78,11 +79,16 @@ public class MamaeFalei : Player
         {
             battle.SetCrowdControl(CrowdControl.CONFUSE, player);
         }
+        this.stamina -= 5;
+        E.ResetCooldown();
+
     }
 
     public override void UseSkillW()
     {
         base.UseSkillW();
+        this.stamina -= 5;
+        W.ResetCooldown();
     }
 
 }

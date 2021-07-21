@@ -7,10 +7,7 @@ public class Dilma : Player
 
     bool waitForNextFrame = false;
     public int WCounter = 3;
-    public int QCounter = 1;
-    
-
-
+    //public int QCounter = 1;
 
     private void Start()
     {
@@ -20,11 +17,9 @@ public class Dilma : Player
 
         this.outline.OutlineWidth = 5;
 
-        
     }
     private void LateUpdate()
     {
-        
         CastingQTrigger();
         CastingWTrigger();
         waitForNextFrame = false;
@@ -49,7 +44,7 @@ public class Dilma : Player
                 {
                     Player player = hit.transform.GetComponent<Player>();
 
-                    if (player)
+                    if (player && this.IsMyTeammate(player))
                     {
                         battle.DoDamage(5 * this.phisicalDamage, player, Battle.AttackType.SKILL);
                         Q.ResetCooldown();
@@ -135,9 +130,6 @@ public class Dilma : Player
 
         }
     }
-
-
-
 
     public override void UseSkillE()
     {

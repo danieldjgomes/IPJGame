@@ -28,7 +28,7 @@ public class UIController : MonoBehaviour
         Initialize();
         
     }
-    void Update()
+    void LateUpdate()
     {
         Player[] players = FindObjectsOfType<Player>();
         string playersList = "";

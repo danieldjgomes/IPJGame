@@ -8,6 +8,7 @@ public class Aecio : Player
     bool waitForNextFrame = false;
     public int WStage = 0;
     public int staminaValue = 4;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +43,8 @@ public class Aecio : Player
                     this.rootCount = 1;
                 }
             }
+            this.stamina -= 5;
+            Q.ResetCooldown();
         }
         else
         {
@@ -65,11 +68,13 @@ public class Aecio : Player
                 {
                     Player player = hit.transform.GetComponent<Player>();
 
-                    if (player)
+                    if (player && this.IsMyTeammate(player))
                     {
+                        print("Stamina entregue a: " + player);
                         player.stamina += this.staminaValue;
                         WStage = 0;
                         this.playerStage = PlayerStage.IDLE;
+                        W.ResetCooldown();
                         this.stamina -= 5;
                     }
 
@@ -95,16 +100,13 @@ public class Aecio : Player
                 if (GameUtils.Distance.IsEnoughDistance(this.gameObject, hit.transform.gameObject, 5 * tile.transform.localScale.x, true))
                 {
                     Player player = hit.transform.GetComponent<Player>();
-                    print(player.transform.name);
-                    if (player)
+                    //print(player.transform.name);
+                    if (player && !this.IsMyTeammate(player))
                     {
-                        print("Stamina roubada");
+                        print("Stamina roubada de: " + player);
                         player.stamina -= this.staminaValue;
                         WStage = 1;
-                        //battle.DoDamage(5 * this.phisicalDamage, player, Battle.AttackType.SKILL);
-                        //battle.DoHeal(3 * this.phisicalDamage, this);
-                        //this.playerStage = PlayerStage.IDLE;
-                        //this.stamina -= 5;
+                        
                     }
 
 
