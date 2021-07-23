@@ -100,7 +100,7 @@ public class Aecio : Player
                 if (GameUtils.Distance.IsEnoughDistance(this.gameObject, hit.transform.gameObject, 5 * tile.transform.localScale.x, true))
                 {
                     Player player = hit.transform.GetComponent<Player>();
-                    //print(player.transform.name);
+                    
                     if (player && !this.IsMyTeammate(player))
                     {
                         print("Stamina roubada de: " + player);
