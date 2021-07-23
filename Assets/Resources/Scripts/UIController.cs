@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
@@ -12,6 +13,10 @@ public class UIController : MonoBehaviour
     public Round round;
     public Button attackButton;
     public Sprite[] staminaBar;
+    public GameObject restartGame;
+    public Button restartButton;
+
+
     public Image staminaImage;
     public Image healthImage;
 
@@ -116,7 +121,7 @@ public class UIController : MonoBehaviour
             }
         }
 
-        
+
 
         //Player player = round.getActualPlayer().GetComponent<Player>();
         //for (int i = 0; i < 20; i++)
@@ -154,6 +159,8 @@ public class UIController : MonoBehaviour
 
         //}
 
+      
+
     }
 
     public void UpdateStaminaUI(Player player)
@@ -183,7 +190,7 @@ public class UIController : MonoBehaviour
                 go.GetComponent<RectTransform>().sizeDelta = staminaImage.GetComponent<RectTransform>().sizeDelta;
                 go.GetComponent<RectTransform>().localScale = staminaImage.GetComponent<RectTransform>().localScale;
                 go.GetComponent<RectTransform>().position = staminaImage.GetComponent<RectTransform>().position;
-                go.gameObject.transform.position = new Vector3(go.gameObject.transform.position.x + i * go.GetComponent<RectTransform>().rect.width / 2, go.gameObject.transform.position.y, go.gameObject.transform.position.z);
+                go.gameObject.transform.position = new Vector3(go.gameObject.transform.position.x + i * go.GetComponent<RectTransform>().rect.width, go.gameObject.transform.position.y, go.gameObject.transform.position.z);
                 go.transform.parent = staminaImage.transform.parent;
                 go.transform.tag = "Stamina";
                 go.GetComponent<Image>().sprite = staminaBar[3];
