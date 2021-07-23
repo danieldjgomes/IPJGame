@@ -258,6 +258,83 @@ public class Player : MonoBehaviour
 
         }
 
+        if(this.playerStage != PlayerStage.IDLE && Input.GetKey(KeyCode.Escape))
+        {
+            this.playerStage = PlayerStage.IDLE;
+        }
+
+        if(this.playerStage == PlayerStage.CASTINGQ)
+        {
+            Player[] players = FindObjectsOfType<Player>();
+            foreach(Player p in players)
+            {
+                if (GameUtils.Distance.IsEnoughDistance(this.gameObject, p.gameObject, Q.Range, true) && this != p)
+                {
+                    if (Q.friendlyFire)
+                    {
+                        p.SetTargable();
+                    }
+                    else
+                    {
+                        if (!this.IsMyTeammate(p))
+                        {
+                            p.SetTargable();
+                        }
+                    }
+
+
+                }
+            }
+        }
+
+        if (this.playerStage == PlayerStage.CASTINGW)
+        {
+            Player[] players = FindObjectsOfType<Player>();
+            foreach (Player p in players)
+            {
+                if (GameUtils.Distance.IsEnoughDistance(this.gameObject, p.gameObject, W.Range, true) && this != p)
+                {
+                    if (W.friendlyFire)
+                    {
+                        p.SetTargable();
+                    }
+                    else
+                    {
+                        if (!this.IsMyTeammate(p))
+                        {
+                            p.SetTargable();
+                        }
+                    }
+
+
+                }
+            }
+        }
+
+        if (this.playerStage == PlayerStage.CASTINGE)
+        {
+            Player[] players = FindObjectsOfType<Player>();
+            foreach (Player p in players)
+            {
+                if (GameUtils.Distance.IsEnoughDistance(this.gameObject, p.gameObject, E.Range, true) && this != p)
+                {
+                    if (E.friendlyFire)
+                    {
+                        p.SetTargable();
+                    }
+                    else
+                    {
+                        if (!this.IsMyTeammate(p))
+                        {
+                            p.SetTargable();
+                        }
+                    }
+
+
+                }
+            }
+        }
+
 
 
     }

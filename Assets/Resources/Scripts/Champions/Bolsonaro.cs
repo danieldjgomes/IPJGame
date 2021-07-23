@@ -11,12 +11,9 @@ public class Bolsonaro : Player
 
     private void Start()
     {
-        this.Q = new Basic(2);
-        this.W = new Basic(3);
-        this.E = new Ultimate(5);
-
-
-
+        this.Q = new Basic(2,2,false);
+        this.W = new Basic(3, 3* Mathf.Sqrt(2),true);
+        this.E = new Ultimate(5,10,false);
     }
 
     // Update is called once per frame
@@ -44,7 +41,7 @@ public class Bolsonaro : Player
 
                 if (tile)
                 {
-                    if (GameUtils.Distance.IsEnoughDistance(this.gameObject, tile.gameObject, 2 * tile.transform.localScale.x, true)
+                    if (GameUtils.Distance.IsEnoughDistance(this.gameObject, tile.gameObject, Q.Range, true)
                         && (hit.transform.position.x == tile.transform.position.x && hit.transform.position.z == tile.transform.position.z)
                         && !HasSomeHere(tile, bulls)
                         && tile.tileState != Tile.TileState.INUSE
@@ -101,7 +98,7 @@ public class Bolsonaro : Player
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
             {
-                    if (GameUtils.Distance.IsEnoughDistance(this.gameObject, hit.transform.gameObject, 3 * tile.transform.localScale.x * Mathf.Sqrt(2), true))
+                    if (GameUtils.Distance.IsEnoughDistance(this.gameObject, hit.transform.gameObject, W.Range, true))
                         {
                             foreach(Player player in players)
                             {
@@ -127,29 +124,33 @@ public class Bolsonaro : Player
     }
        }
 
-    public override void UseSkillQ()
-    {
-        this.playerStage = PlayerStage.CASTINGQ;
-    }
+    //public override void UseSkillQ()
+    //{
+    //    this.playerStage = PlayerStage.CASTINGQ;
+    //}
 
-    public override void UseSkillW()
-    {
-        this.playerStage = PlayerStage.CASTINGW;
-    }
+    //public override void UseSkillW()
+    //{
+    //    this.playerStage = PlayerStage.CASTINGW;
+    //}
 
     public override void UseSkillE()
     {
-        Player[] players = FindObjectsOfType<Player>();
-
-        foreach (Player player in players)
+        if (this.IsCostEnough(E))
         {
-            if(GameUtils.Distance.IsEnoughDistance(this.gameObject, player.gameObject, 10 * tile.transform.localScale.x, true) && player != this && !this.IsMyTeammate(player))
+            Player[] players = FindObjectsOfType<Player>();
+
+            foreach (Player player in players)
             {
-                battle.SetCrowdControl(CrowdControl.ZAPEFFECT, player);
+                if (GameUtils.Distance.IsEnoughDistance(this.gameObject, player.gameObject, E.Range, true) && player != this && !this.IsMyTeammate(player))
+                {
+                    battle.SetCrowdControl(CrowdControl.ZAPEFFECT, player);
+                }
             }
+            this.stamina -= 5;
+            E.ResetCooldown();
         }
-        this.stamina -= 5;
-        E.ResetCooldown();
+       
 
     }
 

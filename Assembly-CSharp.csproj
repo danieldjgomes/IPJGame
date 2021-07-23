@@ -89,6 +89,7 @@
     <Compile Include="Assets\Resources\Scripts\Skills\Basic.cs" />
     <Compile Include="Assets\Resources\Scripts\Skills\Skill.cs" />
     <Compile Include="Assets\Resources\Scripts\Skills\Ultimate.cs" />
+    <Compile Include="Assets\Resources\Scripts\Stamina.cs" />
     <Compile Include="Assets\Resources\Scripts\Team.cs" />
     <Compile Include="Assets\Resources\Scripts\TeamController.cs" />
     <Compile Include="Assets\Resources\Scripts\TeamSplit.cs" />
@@ -654,6 +655,10 @@
     <ProjectReference Include="Unity.Rider.Editor.csproj">
       <Project>{C0B4C241-8043-ED03-35B7-CF2287C59101}</Project>
       <Name>Unity.Rider.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.2D.Sprite.Editor.csproj">
+      <Project>{9A040A58-5441-658A-716E-904EF5CFAF82}</Project>
+      <Name>Unity.2D.Sprite.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.csproj">
       <Project>{DDA0F70D-CF4F-0B8C-C56F-BD842D6A25F5}</Project>

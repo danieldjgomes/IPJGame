@@ -12,9 +12,9 @@ public class Aecio : Player
     // Start is called before the first frame update
     void Start()
     {
-        this.Q = new Basic(2);
-        this.W = new Basic(3);
-        this.E = new Ultimate(5);
+        this.Q = new Basic(2, Mathf.Sqrt(2),false);
+        this.W = new Basic(3,5,false);
+        this.E = new Ultimate(5,0,false);
     }
 
     // Update is called once per frame
@@ -35,7 +35,7 @@ public class Aecio : Player
         {
             foreach (Tile tile in tiles)
             {
-                if (GameUtils.Distance.IsEnoughDistance(this.gameObject, tile.gameObject, tile.transform.localScale.x * Mathf.Sqrt(2), true))
+                if (GameUtils.Distance.IsEnoughDistance(this.gameObject, tile.gameObject, Q.Range, true))
                 {
                     Prepare obj = Instantiate(prepare, new Vector3(0, 1, 0), Quaternion.identity);
                     obj.transform.SetParent(tile.transform, false);
@@ -64,7 +64,7 @@ public class Aecio : Player
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
             {
 
-                if (GameUtils.Distance.IsEnoughDistance(this.gameObject, hit.transform.gameObject, 5 * tile.transform.localScale.x, true))
+                if (GameUtils.Distance.IsEnoughDistance(this.gameObject, hit.transform.gameObject, W.Range, true))
                 {
                     Player player = hit.transform.GetComponent<Player>();
 

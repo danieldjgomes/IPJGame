@@ -33,5 +33,9 @@ namespace GameUtils
 
 
         }
+        public static float GetBlockSize()
+        {
+            return 3f;
+        }
     }
 }

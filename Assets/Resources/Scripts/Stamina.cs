@@ -2,14 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skill : MonoBehaviour
+public class Stamina : MonoBehaviour
 {
-    public int InitialValue;
-    public int CurrrentValue;
-    public int CostValue;
-    public float Range;
-    public bool friendlyFire;
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -20,10 +14,5 @@ public class Skill : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void ResetCooldown()
-    {
-        this.CurrrentValue = 0;
     }
 }

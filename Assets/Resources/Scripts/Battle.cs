@@ -43,7 +43,7 @@ public class Battle : MonoBehaviour
 
             foreach (Player player in players)
             {
-                if (GameUtils.Distance.IsEnoughDistance(currentPlayer.gameObject, player.gameObject, currentPlayer.GetAttackRangeValue(), true) && currentPlayer != player)
+                if (GameUtils.Distance.IsEnoughDistance(currentPlayer.gameObject, player.gameObject, currentPlayer.GetAttackRangeValue(), true) && currentPlayer != player && !currentPlayer.IsMyTeammate(player))
                 {
                     player.SetTargable();
 

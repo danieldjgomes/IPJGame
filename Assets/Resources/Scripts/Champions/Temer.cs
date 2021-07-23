@@ -18,9 +18,9 @@ public class Temer : Player
 
     private void Start()
     {
-        this.Q = new Basic(2);
-        this.W = new Basic(3);
-        this.E = new Ultimate(5);
+        this.Q = new Basic(2,5,true);
+        this.W = new Basic(3,4,true);
+        this.E = new Ultimate(5,0,false);
     }
 
     public override void UseSkillW()
@@ -29,7 +29,7 @@ public class Temer : Player
 
         foreach (Player player in players)
         {
-            if (GameUtils.Distance.IsEnoughDistance(this.gameObject, player.gameObject, 4 * tile.transform.localScale.x, true) && player != this)
+            if (GameUtils.Distance.IsEnoughDistance(this.gameObject, player.gameObject, W.Range, true) && player != this)
             {
                 battle.DoDamage(3 * phisicalDamage, player, Battle.AttackType.SKILL);
             }
@@ -41,27 +41,25 @@ public class Temer : Player
 
    
 
-    public override void UseSkillQ()
-    {
-        this.playerStage = PlayerStage.CASTINGQ;
-    }
+    //public override void UseSkillQ()
+    //{
+    //    this.playerStage = PlayerStage.CASTINGQ;
+    //}
 
     public void CastingQTrigger(){
         if (waitForNextFrame)
             return;
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
         if (this.playerStage == PlayerStage.CASTINGQ && Input.GetMouseButtonUp(0))
         {
-
             int layerMask = 1 << LayerMask.NameToLayer("Player");
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
             {
 
-                if (GameUtils.Distance.IsEnoughDistance(this.gameObject, hit.transform.gameObject, 5 * tile.transform.localScale.x, true))
+                if (GameUtils.Distance.IsEnoughDistance(this.gameObject, hit.transform.gameObject, Q.Range, true))
                 {
                     Player player = hit.transform.GetComponent<Player>();
-
+                    print(player.name);
                     if (player)
                     {
                         battle.DoDamage(5 * this.phisicalDamage, player, Battle.AttackType.SKILL);

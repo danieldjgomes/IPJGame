@@ -8,6 +8,7 @@ public class Round : MonoBehaviour
 
     public GameObject[] chars;
     bool waitForNextFrame = false;
+    public UIController uIController;
 
 
 
@@ -17,22 +18,28 @@ public class Round : MonoBehaviour
     void Start()
     {
         chars = GameObject.FindGameObjectsWithTag("Player");
-        foreach (GameObject charActual in chars)
-        {
-            //print(charActual.transform.name);
-        }
-
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    //void Update()
+    //{
 
-    }
+    //}
 
     void LateUpdate()
     {
+        Player player = chars[0].GetComponent<Player>();
+        if (player)
+        {
+            uIController.UpdateStaminaUI(player);
+            uIController.UpdateHealthUI(player);
+            uIController.UpdateSkillUI(player);
+
+        }
+        
+        
         waitForNextFrame = false;
+        
     }
 
     public void finishTurn()
@@ -45,12 +52,25 @@ public class Round : MonoBehaviour
         RestureStamina(chars[0]);
         RunCountSkills();
         chars = firstPlayerToLast(chars);
-        
+        ResetTargable();
 
-
-        
         waitForNextFrame = true;
     }
+
+    public void ResetTargable()
+    {
+        Player[] players = FindObjectsOfType<Player>();
+
+
+        foreach (Player p in players)
+        {
+            if(p.playerStage == Player.PlayerStage.TARGETABLE)
+            {
+                p.playerStage = Player.PlayerStage.IDLE;
+            }
+        }
+    }
+
 
     public void RunCountSkills()
     {

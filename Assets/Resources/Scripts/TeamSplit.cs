@@ -38,7 +38,7 @@ public class TeamSplit : MonoBehaviour
 
         foreach (Player player in players)
         {
-            print(player.name + " : " + player.team.name);
+            //print(player.name + " : " + player.team.name);
             if(player.team == team1)
             {
                 team1count++;

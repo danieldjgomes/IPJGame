@@ -19,16 +19,16 @@ public class MamaeFalei : Player
 
     private void Start()
     {
-        this.Q = new Basic(2);
-        this.W = new Basic(3);
-        this.E = new Ultimate(5);
+        this.Q = new Basic(2,5,false);
+        this.W = new Basic(3,0,false);
+        this.E = new Ultimate(5,0,true);
     }
 
 
-    public override void UseSkillQ()
-    {
-        this.playerStage = PlayerStage.CASTINGQ;
-    }
+    //public override void UseSkillQ()
+    //{
+    //    this.playerStage = PlayerStage.CASTINGQ;
+    //}
 
     public void CastingQTrigger()
     {
@@ -44,7 +44,7 @@ public class MamaeFalei : Player
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
             {
 
-                if (GameUtils.Distance.IsEnoughDistance(this.gameObject, hit.transform.gameObject, 5 * tile.transform.localScale.x, true))
+                if (GameUtils.Distance.IsEnoughDistance(this.gameObject, hit.transform.gameObject, Q.Range, true))
                 {
                     Player player = hit.transform.GetComponent<Player>();
 
