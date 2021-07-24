@@ -14,11 +14,12 @@ public class TeamSplit : MonoBehaviour
     {
         Team team1 = new Team("Time1");
         Team team2 = new Team("Time2");
-        int i = 0;
+        
         Player[] players = FindObjectsOfType<Player>();
         foreach(Player player in players)
         {
-            if (i % 2 == 0)
+
+            if(player.name == "MamaeFalei" || player.name == "Dilma" || player.name == "Aecio")
             {
                 player.team = team1;
             }
@@ -26,9 +27,7 @@ public class TeamSplit : MonoBehaviour
             {
                 player.team = team2;
             }
-            print(player.team.name);
-            i++;
-        }
+           }
 
     }
 
@@ -41,7 +40,6 @@ public class TeamSplit : MonoBehaviour
 
         foreach (Player player in players)
         {
-            //print(player.name + " : " + player.team.name);
             if(player.team.name == "Time1")
             {
                 team1count++;
@@ -58,8 +56,6 @@ public class TeamSplit : MonoBehaviour
         if (team1count == 0)
         {
             ui.restartGame.SetActive(true);
-            //GameObject gameObject = GameObject.Find("FinalMessage");
-            //gameObject.GetComponent<TextMesh>().text = "A chapa 2 ganhou a eleição! \n Te vejo daqui 4 anos.";
             text.text = "A chapa 2 ganhou a eleição! \n Te vejo daqui 4 anos.";
             print("team 2 ganhou");
         }
@@ -67,8 +63,6 @@ public class TeamSplit : MonoBehaviour
         if (team2count == 0)
         {
             ui.restartGame.SetActive(true);
-            //GameObject gameObject = GameObject.Find("FinalMessage");
-            //gameObject.GetComponent<TextMesh>().text = "A chapa 1 ganhou a eleição! \n Te vejo daqui 4 anos.";
             text.text = "A chapa 1 ganhou a eleição! \n Te vejo daqui 4 anos.";
             print("team 1 ganhou");
         }
