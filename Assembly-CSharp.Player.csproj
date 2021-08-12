@@ -610,6 +610,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Resources\Images\Loading\Bounce.cs" />
+    <Compile Include="Assets\Resources\Images\Loading\ColorLoop.cs" />
+    <Compile Include="Assets\Resources\Images\Loading\MenuEvents.cs" />
     <Compile Include="Assets\Resources\QuickOutline\Scripts\Outline.cs" />
     <Compile Include="Assets\Resources\Scripts\AttackMode.cs" />
     <Compile Include="Assets\Resources\Scripts\Battle.cs" />

@@ -44,7 +44,7 @@ public class MamaeFalei : Player
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
             {
 
-                if (GameUtils.Distance.IsEnoughDistance(this.gameObject, hit.transform.gameObject, Q.Range, true))
+                if (GameUtils.Utility.IsEnoughDistance(this.gameObject, hit.transform.gameObject, Q.Range, true))
                 {
                     Player player = hit.transform.GetComponent<Player>();
 

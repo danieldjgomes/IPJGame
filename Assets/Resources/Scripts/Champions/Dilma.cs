@@ -40,7 +40,7 @@ public class Dilma : Player
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
             {
 
-                if (GameUtils.Distance.IsEnoughDistance(this.gameObject, hit.transform.gameObject, Q.Range, true))
+                if (GameUtils.Utility.IsEnoughDistance(this.gameObject, hit.transform.gameObject, Q.Range, true))
                 {
                     Player player = hit.transform.GetComponent<Player>();
 
@@ -85,18 +85,19 @@ public class Dilma : Player
 
                 if (tile)
                 {
-                    if (GameUtils.Distance.IsEnoughDistance(this.gameObject, tile.gameObject, W.Range, true)
+                    if (GameUtils.Utility.IsEnoughDistance(this.gameObject, tile.gameObject, W.Range, true)
                         
                         && (hit.transform.position.x == tile.transform.position.x && hit.transform.position.z == tile.transform.position.z)
                         && !HasSomeHere(tile, airBags) && tile.tileState != Tile.TileState.INUSE
                         )
 
                     {
-                        AirBag airBag = Resources.Load<AirBag>("Prefabs/AirBag");
+                        AirBag airBag = Resources.Load<AirBag>("Prefabs/Ballon/balloon");
                         if (airBag)
                         {
-                            AirBag obj = Instantiate(airBag, new Vector3(0, 1, 0), Quaternion.identity);
-                            obj.transform.SetParent(tile.transform, false);
+                            AirBag obj = Instantiate(airBag, new Vector3(hit.transform.position.x, 1, hit.transform.position.z), Quaternion.identity);
+                            obj.owner = this;
+                            //obj.transform.SetParent(tile.transform, false);
                             this.WCounter -= 1;
 
 

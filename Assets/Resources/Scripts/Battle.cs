@@ -29,7 +29,7 @@ public class Battle : MonoBehaviour
 
         if (currentPlayer.crowdControl == Player.CrowdControl.TAUNT)
         {
-            if (GameUtils.Distance.IsEnoughDistance(currentPlayer.gameObject, currentPlayer.tauntedTarget.gameObject, currentPlayer.GetAttackRangeValue(), true) && currentPlayer != currentPlayer.tauntedTarget)
+            if (GameUtils.Utility.IsEnoughDistance(currentPlayer.gameObject, currentPlayer.tauntedTarget.gameObject, currentPlayer.GetAttackRangeValue(), true) && currentPlayer != currentPlayer.tauntedTarget)
                    {
                         currentPlayer.tauntedTarget.SetTargable();
 
@@ -43,7 +43,7 @@ public class Battle : MonoBehaviour
 
             foreach (Player player in players)
             {
-                if (GameUtils.Distance.IsEnoughDistance(currentPlayer.gameObject, player.gameObject, currentPlayer.GetAttackRangeValue(), true) && currentPlayer != player && !currentPlayer.IsMyTeammate(player))
+                if (GameUtils.Utility.IsEnoughDistance(currentPlayer.gameObject, player.gameObject, currentPlayer.GetAttackRangeValue(), true) && currentPlayer != player && !currentPlayer.IsMyTeammate(player))
                 {
                     player.SetTargable();
 

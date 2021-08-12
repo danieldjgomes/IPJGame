@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GameUtils
 {
-    public class Distance : MonoBehaviour
+    public class Utility : MonoBehaviour
     {
         public static bool IsEnoughDistance(GameObject ob1, GameObject ob2, float distance, bool useDiagonals)
         {
@@ -37,5 +37,15 @@ namespace GameUtils
         {
             return 3f;
         }
+
+        public static void SetParent(Transform child, Transform parent)
+        {
+            child.parent = parent;
+            child.localScale = Vector3.zero;
+            child.localRotation = Quaternion.identity;
+            child.localScale = Vector3.one;
+        }
+
+
     }
 }

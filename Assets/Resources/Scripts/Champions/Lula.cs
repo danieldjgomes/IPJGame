@@ -60,7 +60,7 @@ public class Lula : Player
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
             {
 
-                if (GameUtils.Distance.IsEnoughDistance(this.gameObject, hit.transform.gameObject, Q.Range, true))
+                if (GameUtils.Utility.IsEnoughDistance(this.gameObject, hit.transform.gameObject, Q.Range, true))
                 {
                     Player player = hit.transform.GetComponent<Player>();
 
@@ -106,7 +106,7 @@ public class Lula : Player
 
                 if (tile)
                 {
-                    if (GameUtils.Distance.IsEnoughDistance(this.gameObject, tile.gameObject,W.Range, false)
+                    if (GameUtils.Utility.IsEnoughDistance(this.gameObject, tile.gameObject,W.Range, false)
                         && (hit.transform.position.x == tile.transform.position.x 
                         && hit.transform.position.z == tile.transform.position.z)
                         )
@@ -248,21 +248,24 @@ public class Lula : Player
     public override void UseSkillE()
     {
         Tile[] tiles = FindObjectsOfType<Tile>();
-        Triplex triplex = Resources.Load<Triplex>("Prefabs/Triplex");
+        Triplex triplex = Resources.Load<Triplex>("Prefabs/Triplex/triplex");
 
         if (triplex)
         {
             foreach (Tile tile in tiles)
             {
-                if (GameUtils.Distance.IsEnoughDistance(this.gameObject, tile.gameObject, 4.5f*Mathf.Sqrt(2), true))
+                if (GameUtils.Utility.IsEnoughDistance(this.gameObject, tile.gameObject, 4.5f*Mathf.Sqrt(2), true))
                 {
-                    Triplex obj = Instantiate(triplex, new Vector3(0, 1, 0), Quaternion.identity);
-                    obj.transform.SetParent(tile.transform, false);
+                    Triplex obj = Instantiate(triplex, new Vector3(tile.transform.position.x, 1, tile.transform.position.z), Quaternion.identity);
+                    obj.owner = this;
+                    //Triplex obj = Instantiate(triplex, new Vector3(0, 1, 0), Quaternion.identity);
+                    //obj.transform.SetParent(tile.transform, false);
                 }
             }
             E.ResetCooldown();
             this.stamina -= 5;
         }
+
        
 
         

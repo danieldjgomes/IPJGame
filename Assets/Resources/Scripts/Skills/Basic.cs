@@ -12,7 +12,7 @@ public class Basic : Skill
         this.InitialValue = costValue;
         this.CurrrentValue = costValue;
         this.CostValue = costValue;
-        this.Range = range * GameUtils.Distance.GetBlockSize();
+        this.Range = range * GameUtils.Utility.GetBlockSize();
         this.friendlyFire = friendlyFire;
 
     }

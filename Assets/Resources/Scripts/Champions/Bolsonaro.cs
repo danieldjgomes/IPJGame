@@ -41,18 +41,21 @@ public class Bolsonaro : Player
 
                 if (tile)
                 {
-                    if (GameUtils.Distance.IsEnoughDistance(this.gameObject, tile.gameObject, Q.Range, true)
+                    if (GameUtils.Utility.IsEnoughDistance(this.gameObject, tile.gameObject, Q.Range, true)
                         && (hit.transform.position.x == tile.transform.position.x && hit.transform.position.z == tile.transform.position.z)
                         && !HasSomeHere(tile, bulls)
                         && tile.tileState != Tile.TileState.INUSE
                         )
 
                     {
-                        Bull bull = Resources.Load<Bull>("Prefabs/Bull");
+                        Bull bull = Resources.Load<Bull>("Prefabs/Bull/bull");
                         if (bull)
                         {
-                            Bull obj = Instantiate(bull, new Vector3(0, 1, 0), Quaternion.identity);
-                            obj.transform.SetParent(tile.transform, false);
+                            //Bull obj = Instantiate(bull, new Vector3(hit.transform.position.x, 1, hit.transform.position.z), Quaternion.identity);
+                            Bull obj = Instantiate(bull, new Vector3(hit.transform.position.x, 1, hit.transform.position.z), Quaternion.identity);
+                            obj.owner = this;
+                            //GameUtils.Utility.SetParent(obj.transform, tile.transform);
+                            //obj.transform.SetParent(tile.transform, false);
                             this.QCounter -= 1;
                         }
                         else
@@ -98,11 +101,11 @@ public class Bolsonaro : Player
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
             {
-                    if (GameUtils.Distance.IsEnoughDistance(this.gameObject, hit.transform.gameObject, W.Range, true))
+                    if (GameUtils.Utility.IsEnoughDistance(this.gameObject, hit.transform.gameObject, W.Range, true))
                         {
                             foreach(Player player in players)
                             {
-                                if (player != this && GameUtils.Distance.IsEnoughDistance(hit.transform.gameObject, player.transform.gameObject, 2* tile.transform.localScale.x * Mathf.Sqrt(2), true))
+                                if (player != this && GameUtils.Utility.IsEnoughDistance(hit.transform.gameObject, player.transform.gameObject, 2* tile.transform.localScale.x * Mathf.Sqrt(2), true))
                                 {
                                     UIController.ShowDamagePopUp("X", hit.transform);
                                     this.battle.DoDamage(this.phisicalDamage * 2, player, Battle.AttackType.SKILL);
@@ -142,7 +145,7 @@ public class Bolsonaro : Player
 
             foreach (Player player in players)
             {
-                if (GameUtils.Distance.IsEnoughDistance(this.gameObject, player.gameObject, E.Range, true) && player != this && !this.IsMyTeammate(player))
+                if (GameUtils.Utility.IsEnoughDistance(this.gameObject, player.gameObject, E.Range, true) && player != this && !this.IsMyTeammate(player))
                 {
                     battle.SetCrowdControl(CrowdControl.ZAPEFFECT, player);
                 }

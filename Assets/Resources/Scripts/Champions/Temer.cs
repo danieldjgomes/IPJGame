@@ -29,7 +29,7 @@ public class Temer : Player
 
         foreach (Player player in players)
         {
-            if (GameUtils.Distance.IsEnoughDistance(this.gameObject, player.gameObject, W.Range, true) && player != this)
+            if (GameUtils.Utility.IsEnoughDistance(this.gameObject, player.gameObject, W.Range, true) && player != this)
             {
                 battle.DoDamage(3 * phisicalDamage, player, Battle.AttackType.SKILL);
             }
@@ -56,7 +56,7 @@ public class Temer : Player
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
             {
 
-                if (GameUtils.Distance.IsEnoughDistance(this.gameObject, hit.transform.gameObject, Q.Range, true))
+                if (GameUtils.Utility.IsEnoughDistance(this.gameObject, hit.transform.gameObject, Q.Range, true))
                 {
                     Player player = hit.transform.GetComponent<Player>();
                     print(player.name);

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
+    public Player owner;
+
+
     // Start is called before the first frame update
     void Start()
     {

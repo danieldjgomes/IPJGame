@@ -268,7 +268,7 @@ public class Player : MonoBehaviour
             Player[] players = FindObjectsOfType<Player>();
             foreach(Player p in players)
             {
-                if (GameUtils.Distance.IsEnoughDistance(this.gameObject, p.gameObject, Q.Range, true) && this != p)
+                if (GameUtils.Utility.IsEnoughDistance(this.gameObject, p.gameObject, Q.Range, true) && this != p)
                 {
                     if (Q.friendlyFire)
                     {
@@ -292,7 +292,7 @@ public class Player : MonoBehaviour
             Player[] players = FindObjectsOfType<Player>();
             foreach (Player p in players)
             {
-                if (GameUtils.Distance.IsEnoughDistance(this.gameObject, p.gameObject, W.Range, true) && this != p)
+                if (GameUtils.Utility.IsEnoughDistance(this.gameObject, p.gameObject, W.Range, true) && this != p)
                 {
                     if (W.friendlyFire)
                     {
@@ -316,7 +316,7 @@ public class Player : MonoBehaviour
             Player[] players = FindObjectsOfType<Player>();
             foreach (Player p in players)
             {
-                if (GameUtils.Distance.IsEnoughDistance(this.gameObject, p.gameObject, E.Range, true) && this != p)
+                if (GameUtils.Utility.IsEnoughDistance(this.gameObject, p.gameObject, E.Range, true) && this != p)
                 {
                     if (E.friendlyFire)
                     {
@@ -505,6 +505,8 @@ public class Player : MonoBehaviour
             return false;
         }
     }
+
+   
 
 
 

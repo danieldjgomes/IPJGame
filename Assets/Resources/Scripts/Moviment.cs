@@ -112,7 +112,7 @@ public class Moviment : MonoBehaviour
                
 
                 if (
-                    GameUtils.Distance.IsEnoughDistance(player.gameObject, tc.gameObject, tile.transform.localScale.x, false)
+                    GameUtils.Utility.IsEnoughDistance(player.gameObject, tc.gameObject, tile.transform.localScale.x, false)
                   
                     )
                 {

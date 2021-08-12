@@ -190,7 +190,7 @@ public class UIController : MonoBehaviour
                 go.GetComponent<RectTransform>().sizeDelta = staminaImage.GetComponent<RectTransform>().sizeDelta;
                 go.GetComponent<RectTransform>().localScale = staminaImage.GetComponent<RectTransform>().localScale;
                 go.GetComponent<RectTransform>().position = staminaImage.GetComponent<RectTransform>().position;
-                go.gameObject.transform.position = new Vector3(go.gameObject.transform.position.x + i * go.GetComponent<RectTransform>().rect.width, go.gameObject.transform.position.y, go.gameObject.transform.position.z);
+                go.gameObject.transform.position = new Vector3(Screen.width*0.125f + i * Screen.width*0.0375f, go.gameObject.transform.position.y, go.gameObject.transform.position.z);
                 go.transform.parent = staminaImage.transform.parent;
                 go.transform.tag = "Stamina";
                 go.GetComponent<Image>().sprite = staminaBar[3];
