@@ -125,24 +125,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f733f376c16a9a949bf7ebe39b86d799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stamina: 0
-  MaxStamina: 0
+  stamina: 10
+  MaxStamina: 20
   speed: 0
-  health: 0
-  maxHealth: 0
+  health: 10
+  maxHealth: 20
   phisicalDamage: 0
   defense: 0
-  attackCost: 0
+  attackCost: 1
   tauntCount: 0
   confuseCount: 0
   rootCount: 0
-  tile: {fileID: 0}
+  zapCount: 0
+  tile: {fileID: 4666510455317779612, guid: 1b9cd5fa0f163ae45b45df62a3f7cb86, type: 3}
   playerStage: 0
   crowdControl: 0
   tauntedTarget: {fileID: 0}
-  round: {fileID: 0}
-  moviment: {fileID: 0}
-  ui: {fileID: 0}
-  outline: {fileID: 0}
-  battle: {fileID: 0}
+  ui: {fileID: 2401338152093769337, guid: b364a219ed4485148b789300f6be74f6, type: 3}
+  outline: {fileID: 3980850391119508959}
+  battle: {fileID: 4888588596155232308, guid: 1c9bfb35ef1dc0343abcdf63c0720205, type: 3}
   attackRange: 0
+  team: {fileID: 0}
+  WCounter: 1
+  QCounter: 2

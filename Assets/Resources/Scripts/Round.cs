@@ -6,28 +6,25 @@ using UnityEngine;
 public class Round : MonoBehaviour
 {
 
-    public GameObject[] chars;
+    public List<GameObject> chars;
     bool waitForNextFrame = false;
     public UIController uIController;
 
-
-
-
-
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        chars = GameObject.FindGameObjectsWithTag("Player");
+        //chars = GameObject.FindGameObjectsWithTag("Player");
     }
 
-    // Update is called once per frame
-    //void Update()
-    //{
-
-    //}
-
-    void LateUpdate()
+    void Update()
     {
+        //print(this.chars[0]);
+        uIController.UpdateStaminaUI(getActualPlayer().GetComponent<Player>());
+        uIController.UpdateHealthUI(getActualPlayer().GetComponent<Player>());
+        uIController.UpdateSkillUI(getActualPlayer().GetComponent<Player>());
+        //waitForNextFrame = false;
+
+
         Player player = chars[0].GetComponent<Player>();
         if (player)
         {
@@ -36,19 +33,19 @@ public class Round : MonoBehaviour
             uIController.UpdateSkillUI(player);
 
         }
-        
-        
+
+
         waitForNextFrame = false;
-        
+
+
     }
 
     public void finishTurn()
     {
         if (waitForNextFrame)
             return;
-
-        Player player = chars[0].GetComponent<Player>();
-        SetCounterCC(player);
+        GameObject player = chars[0];
+        SetCounterCC(player.GetComponent<Player>());
         RestureStamina(chars[0]);
         RunCountSkills();
         chars = firstPlayerToLast(chars);
@@ -77,8 +74,7 @@ public class Round : MonoBehaviour
         Aecio aecio = chars[1].transform.GetComponent<Aecio>();
         Player player = chars[0].transform.GetComponent<Player>();
         Prepare[] prepares = FindObjectsOfType<Prepare>();
-        //print(chars[1].transform.name);
-        //print(prepares.Length);
+        
         if (aecio != null)
         {
             foreach(Prepare prepare in prepares)
@@ -151,31 +147,33 @@ public class Round : MonoBehaviour
 
    
 
-    GameObject[] firstPlayerToLast(GameObject[] gos)
+    List<GameObject> firstPlayerToLast(List<GameObject> gos)
     {
         var tmp = gos[0];
-        for (var i = 1; i < gos.Length; i++)
+        for (var i = 1; i < gos.Count; i++)
         {
             gos[i - 1] = gos[i];
         }
-        gos[gos.Length - 1] = tmp;
+        gos[gos.Count - 1] = tmp;
 
         return gos;
     }
 
     public GameObject getActualPlayer()
-    {   
-        if (chars[0].activeSelf)
-        {
-            return chars[0];
-        }
+    {
+       
+        if (this.chars[0].activeSelf)
+            {
+                return chars[0];
+            }
         else
         {
-        firstPlayerToLast(chars);
+            firstPlayerToLast(this.chars);
             return chars[0];
         }
-        
-    }
+       
+        }
+    
 
     public void SetIdleAllPlayers()
     {

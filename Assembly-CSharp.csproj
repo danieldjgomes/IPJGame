@@ -67,10 +67,12 @@
     <Compile Include="Assets\Resources\Images\Loading\Bounce.cs" />
     <Compile Include="Assets\Resources\Images\Loading\ColorLoop.cs" />
     <Compile Include="Assets\Resources\Images\Loading\MenuEvents.cs" />
+    <Compile Include="Assets\Resources\Images\Select\ButtonSelect.cs" />
     <Compile Include="Assets\Resources\QuickOutline\Scripts\Outline.cs" />
     <Compile Include="Assets\Resources\Scripts\AttackMode.cs" />
     <Compile Include="Assets\Resources\Scripts\Battle.cs" />
     <Compile Include="Assets\Resources\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Resources\Scripts\ChampionSelect.cs" />
     <Compile Include="Assets\Resources\Scripts\Champions\Aecio.cs" />
     <Compile Include="Assets\Resources\Scripts\Champions\Bolsonaro.cs" />
     <Compile Include="Assets\Resources\Scripts\Champions\Dilma.cs" />
@@ -81,6 +83,7 @@
     <Compile Include="Assets\Resources\Scripts\FloatingText.cs" />
     <Compile Include="Assets\Resources\Scripts\GameUtils.cs" />
     <Compile Include="Assets\Resources\Scripts\GridGuide.cs" />
+    <Compile Include="Assets\Resources\Scripts\LoadChampions.cs" />
     <Compile Include="Assets\Resources\Scripts\Moviment.cs" />
     <Compile Include="Assets\Resources\Scripts\Obstacle.cs" />
     <Compile Include="Assets\Resources\Scripts\Obstacles\AirBag.cs" />

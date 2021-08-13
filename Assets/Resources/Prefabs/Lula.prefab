@@ -141,9 +141,11 @@ MonoBehaviour:
   playerStage: 0
   crowdControl: 0
   tauntedTarget: {fileID: 0}
-  round: {fileID: 0}
-  moviment: {fileID: 0}
-  ui: {fileID: 0}
+  round: {fileID: 585092637757683694, guid: 36718613fac7bd24e8d22a04e873d801, type: 3}
+  moviment: {fileID: 1113871116917938861, guid: 2ac6bb835231c50449d1894cbdbd8d8d,
+    type: 3}
+  ui: {fileID: 2401338152093769337, guid: b364a219ed4485148b789300f6be74f6, type: 3}
   outline: {fileID: 1481859208457866108}
-  battle: {fileID: 0}
+  battle: {fileID: 4888588596155232308, guid: 1c9bfb35ef1dc0343abcdf63c0720205, type: 3}
   attackRange: 1
+  team: {fileID: 0}

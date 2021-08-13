@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 408727903}
   - component: {fileID: 408727905}
   m_Layer: 5
-  m_Name: Image
+  m_Name: BgLoop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -434,7 +434,7 @@ GameObject:
   - component: {fileID: 560210945}
   - component: {fileID: 560210946}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -578,7 +578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1258687249273e4e9d711af32f1304c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Game
+  sceneName: ChampionSelect
 --- !u!1 &654091495
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,7 +671,7 @@ GameObject:
   - component: {fileID: 668638825}
   - component: {fileID: 668638824}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Config
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -805,7 +805,7 @@ GameObject:
   - component: {fileID: 706911102}
   - component: {fileID: 706911104}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Logo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1123,7 +1123,7 @@ GameObject:
   - component: {fileID: 1599933803}
   - component: {fileID: 1599933807}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: Quit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

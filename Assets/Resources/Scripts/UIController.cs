@@ -185,19 +185,21 @@ public class UIController : MonoBehaviour
 
                 GameObject go = Instantiate(staminaImage.gameObject);
                 go.name = i.ToString();
-                go.transform.SetParent(staminaImage.transform);
+                //go.transform.SetParent(staminaImage.transform);
                 go.transform.parent = canvas.transform;
                 go.GetComponent<RectTransform>().sizeDelta = staminaImage.GetComponent<RectTransform>().sizeDelta;
                 go.GetComponent<RectTransform>().localScale = staminaImage.GetComponent<RectTransform>().localScale;
                 go.GetComponent<RectTransform>().position = staminaImage.GetComponent<RectTransform>().position;
-                go.gameObject.transform.position = new Vector3(Screen.width*0.125f + i * Screen.width*0.0375f, go.gameObject.transform.position.y, go.gameObject.transform.position.z);
-                go.transform.parent = staminaImage.transform.parent;
+                go.gameObject.transform.position = new Vector3(Screen.width * 0.125f + i * Screen.width * 0.0375f, go.gameObject.transform.position.y, go.gameObject.transform.position.z);
+
+                go.transform.parent = GameObject.Find("StaminaGrid").transform;
+
                 go.transform.tag = "Stamina";
                 go.GetComponent<Image>().sprite = staminaBar[3];
                 go.SetActive(true);
 
 
-                if (int.Parse(go.name) < player.stamina +1)
+                if (int.Parse(go.name) < player.stamina + 1)
                 {
                     go.GetComponent<Image>().sprite = staminaBar[2];
                 }
@@ -206,9 +208,9 @@ public class UIController : MonoBehaviour
                     go.GetComponent<Image>().sprite = staminaBar[0];
                 }
 
-                if(player.playerStage == Player.PlayerStage.CASTINGQ)
+                if (player.playerStage == Player.PlayerStage.CASTINGQ)
                 {
-                    if (int.Parse(go.name) < player.stamina + 1 && int.Parse(go.name) > player.stamina-player.getQ().CostValue)
+                    if (int.Parse(go.name) < player.stamina + 1 && int.Parse(go.name) > player.stamina - player.getQ().CostValue)
                     {
                         go.GetComponent<Image>().sprite = staminaBar[1];
                     }
@@ -230,7 +232,7 @@ public class UIController : MonoBehaviour
                     }
                 }
 
-                
+
 
             }
             alreadyCastStamina = true;

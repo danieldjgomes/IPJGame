@@ -26,7 +26,7 @@ public class TeamSplit : MonoBehaviour
             {
                 player.team = team2;
             }
-            print(player.team.name);
+            //print(player.team.name);
             i++;
         }
 
@@ -53,8 +53,8 @@ public class TeamSplit : MonoBehaviour
             }
 
         }
-        print(team1count);
-        print(team2count);
+        //print(team1count);
+        //print(team2count);
         if (team1count == 0)
         {
             ui.restartGame.SetActive(true);

@@ -50,6 +50,7 @@ public class Moviment : MonoBehaviour
     public void MovePlayer(Transform hit, Player player)
     {
         Tile[] tileControllers = CalculateWeight(hit);
+        
         StartCoroutine(RunPath(hit, tileControllers, player));
     }
 
@@ -172,7 +173,7 @@ public class Moviment : MonoBehaviour
             yield return null;
         }
 
-
+        
         yield return new WaitForSeconds(1f);
 
     }
